@@ -1,0 +1,18 @@
+﻿@using AndersonExamModel;
+@model Exam
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/Exam/Create" method="post">
+            @{
+                Html.RenderPartial("_Exam" , Model);
+            }
+        </form>
+    </div>
+</div>

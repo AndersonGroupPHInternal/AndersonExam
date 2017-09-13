@@ -1,0 +1,18 @@
+﻿@using AndersonExamModel;
+@model TakenExam
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/TakenExam/Update" method="post">
+            @{
+                Html.RenderPartial("_TakenExam", Model);
+            }
+        </form>
+    </div>
+</div>

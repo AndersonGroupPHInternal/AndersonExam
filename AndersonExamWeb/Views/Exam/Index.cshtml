@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="ExamController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="../Exam/Create" class="btn btn-default">Create</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>ExamId</th>
+                        <th>TimeLimit</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Instructions</th>
+                        <th>Copyright</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="exam in model.Exams" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(exam.ExamId)">
+                        <td><span ng-bind="exam.ExamId"></span></td>
+                        <td><span ng-bind="exam.TimeLimit"></span></td>
+                        <td><span ng-bind="exam.Name"></span></td>
+                        <td><span ng-bind="exam.Description"></span></td>
+                        <td><span ng-bind="exam.Instructions"></span></td>
+                        <td><span ng-bind="exam.Copyright"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(exam.ExamId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(exam)">Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

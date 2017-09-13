@@ -1,0 +1,99 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+
+    @Html.Partial("_PartialCSS")
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <a class="navbar-brand" href="~/Home">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Home
+        </a>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+               
+                
+                
+                 @*EXAM*@
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-file-o" aria-hidden="true"></i>
+                        Exam
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="nav-link" href="~/Exam">
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                                List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="~/Exam/Create">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Create
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+               
+                
+                
+                 @*EXAM SET*@
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                        Exam Set
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="nav-link" href="~/ExamSet">
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                                List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="~/ExamSet/Create">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Create
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+    
+                
+                @*POSITION*@
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Position
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="nav-link" href="~/ExamSet">
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                                List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="~/ExamSet/Create">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Create
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="MainContainer" class="body-content" ng-app="App">
+        @Html.Partial("_PartialScript")
+        @Scripts.Render("~/bundles/AngularJS")
+        @RenderBody()
+    </div>
+</body>
+</html>

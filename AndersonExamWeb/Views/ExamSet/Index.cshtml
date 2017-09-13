@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="ExamSetController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="../ExamSet/Create" class="btn btn-default">Create</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>ExamSetId</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="examSet in model.ExamSets" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(examSet.ExamSetId)">
+                        <td><span ng-bind="examSet.ExamSetId"></span></td>
+                        <td><span ng-bind="examSet.Name"></span></td>
+                        <td><span ng-bind="examSet.Description"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(examSet.ExamSetId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(examSet)">Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

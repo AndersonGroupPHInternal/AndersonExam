@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="TakenExamController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a href="../TakenExam/Create" class="btn btn-default">Create</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>Percentage</th>
+                        <th>ExamId</th>
+                        <th>ExamineeId</th>
+                        <th>Score</th>
+                        <th>TakenExamId</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="takenExam in model.TakenExam" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(takenExam.TakenExamId)">
+                        <td><span ng-bind="takenExam.Percentage"></span></td>
+                        <td><span ng-bind="takenExam.ExamId"></span></td>
+                        <td><span ng-bind="takenExam.ExamineeId"></span></td>
+                        <td><span ng-bind="takenExam.Score"></span></td>
+                        <td><span ng-bind="takenExam.TakenExamId"></span></td>
+                        <td><span ng-bind="takenExam.Total"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(takenExam.TakenExamId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(takenExam)">Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

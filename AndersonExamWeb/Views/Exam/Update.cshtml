@@ -1,0 +1,164 @@
+﻿@using AndersonExamModel;
+@model Exam
+
+
+@{
+    ViewBag.Title = "Update";
+}
+<h2>Update</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <form action="~/Exam/Update" method="post">
+            @{
+                Html.RenderPartial("_Exam", Model);
+            }
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Question</div>
+    <div class="panel-body">
+        <div ng-controller="QuestionController as model" ng-init="model.Initialise(@Model.ExamId)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-sm table-bordered">
+                        <thead>
+                            <tr class="thead-inverse">
+                                <th class="col-sm-1">Question No</th>
+                                <th class="col-sm-1">Question Id</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th class="col-sm-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="question in model.Questions" ng-init="model.ReadChoices(question); model.ReadQuestionImage(question)">
+                            <tr class="clickableRow" ng-click="$event.originalEvent.dropdown || model.ShowChoices(question) || model.ShowQuestionImage(question) || model.ShowChoiceImage(question)">
+                                <td><span ng-bind="{{$index + 1 }}"></span></td>
+                                <td><span ng-bind="question.QuestionId"></span></td>
+                                <td>
+                                    <span ng-bind="question.Description" ng-show="question.UpdateMode != true"></span>
+                                    <textarea type="text" class="form-control" rows="3" ng-model="question.NewDescription" ng-show="question.UpdateMode == true"></textarea>
+                                </td>
+                                <td>
+                                    @*IMAGES*@
+                                    {{question}}
+                                    <div ng-repeat="question in question.QuestionImages">
+                                        <img ng-src="~/{{question.Url}}" alt="None"  style="height:150px;width:150px;"/>
+                                    </div>
+                                </td>
+                                <td ng-click="$event.originalEvent.dropdown = true">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" ng-click="model.ShowChoices(question)">Show Choices</a></li>
+                                            <li><a href="#" ng-click="model.UpdateRow(question)" ng-show="question.UpdateMode != true">Update</a></li>
+                                            <li><a href="#" ng-click="model.Update(question)" ng-show="question.UpdateMode == true">Save Changes</a></li>
+                                            <li><a href="#" ng-click="model.Cancel(question)" ng-show="question.UpdateMode == true">Cancel Changes</a></li>
+                                            <li><a href="#" ng-click="model.DeleteQuestionImage(question, questionImage)">Delete Image</a></li>
+                                            <li><a href="#" ng-click="model.Delete(question)">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-show="question.ShowChoices == true">
+                                <td colspan="5">
+                                    <h3>Choices</h3>
+                                    <table class="table table-hover table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sm-1">Correct</th>
+                                                <th class="col-sm-1">Choice Id</th>
+                                                <th class="col-sm-5">Description</th>
+                                                <th class="col-sm-8">Image</th>
+                                                <th class="col-sm-1"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="choice in question.Choices">
+                                                <td>
+                                                    <span ng-bind="choice.Correct" ng-show="choice.UpdateMode != true"></span>
+                                                    <input type="checkbox" ng-model="choice.NewCorrect" ng-show="choice.UpdateMode == true" />
+                                                </td>
+                                                <td class="col-sm-1"><span ng-bind="choice.ChoiceId"></span></td>
+                                                <td class="col-sm-7">
+                                                    <span ng-bind="choice.Description" ng-show="choice.UpdateMode != true"></span>
+                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="choice.NewDescription"
+                                                              ng-show="choice.UpdateMode == true"></textarea>
+                                                </td>
+                                                <td>
+                                                    @*PICTURE*@
+                                                    {{choice}}
+                                                    @*<img ng-src="~/{{choices.Url}}" alt="None" style="height:150px;width:150px;" />*@
+                                                </td>
+                                                <td ng-click="$event.originalEvent.dropdown = true">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#" ng-click="model.UpdateChoiceRow(choice)" ng-show="choice.UpdateMode != true">Update</a></li>
+                                                            <li><a href="#" ng-click="model.UpdateChoice(question, choice)" ng-show="choice.UpdateMode == true">Save Changes</a></li>
+                                                            <li><a href="#" ng-click="model.CancelChoice(choice)" ng-show="choice.UpdateMode == true">Cancel Changes</a></li>
+                                                            <li><a href="#" ng-click="model.DeleteChoice(question, choice)">Delete</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                                @*<td>
+                                                    {{choice}}
+                                                </td>*@
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" ng-model="question.NewChoice.Correct" />
+                                                </td>
+                                                <tf>
+                                                </tf>
+                                                <td colspan="2">
+                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="question.NewChoice.Description"></textarea>
+                                                </td>
+                                                <td>
+                                                    @* PICTURES DITO *@
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" ng-click="model.CreateChoice(question)">Create</button>
+                                                    <label class="btn btn-info btn-file">
+                                                        Browse<input type="file" style="display: none;" id="Url" accept="image/x-png,image/gif,image/jpeg" />
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                <td colspan="4">
+                                                    {{question.NewChoice}}
+                                                </td>
+                                            </tr>*@
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                                @*<tr>
+                                    <td colspan="4">
+                                        {{question}}
+                                    </td>
+                                </tr>*@
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="model.Question.Description"></textarea>
+                                </td>
+                                <td>
+                                    <input type="file" id="Url" accept="image/x-png,image/gif,image/jpeg" />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" ng-click="model.Create(); model.CreateQuestionImage(question)">Create</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

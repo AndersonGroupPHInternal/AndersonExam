@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="TakenExamController as model" ng-init="model.Initialise(@Model)">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>Percentage</th>
+                        <th>ExamId</th>
+                        <th>ExamineeId</th>
+                        <th>Score</th>
+                        <th>TakenExamId</th>
+                        <th>Total</th>
+                        <th>TimeLimit</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="takenExam in model.TakenExams">
+                    <tr class="clickableRow">
+                        <td><span ng-bind="takenExam.Percentage"></span></td>
+                        <td><span ng-bind="takenExam.ExamId"></span></td>
+                        <td><span ng-bind="takenExam.ExamineeId"></span></td>
+                        <td><span ng-bind="takenExam.Score"></span></td>
+                        <td><span ng-bind="takenExam.TakenExamId"></span></td>
+                        <td><span ng-bind="takenExam.Total"></span></td>
+                        <td><span ng-bind="takenExam.Exam.TimeLimit"></span></td>
+                        <td><span ng-bind="takenExam.Exam.Name"></span></td>
+                        <td><span ng-bind="takenExam.Exam.Description"></span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">
+                            <table class="table table-hover table-sm table-bordered ">
+                                <thead>
+                                    <tr class="thead-inverse">
+                                        <th>AnswerId</th>
+                                        <th>ChoiceId</th>
+                                        <th>QuestionId</th>
+                                        <th>Correct</th>
+                                        <th>Answer</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="answer in takenExam.Answers">
+                                    <tr class="clickableRow">
+                                        <td><span ng-bind="answer.AnswerId"></span></td>
+                                        <td><span ng-bind="answer.ChoiceId"></span></td>
+                                        <td><span ng-bind="answer.QuestionId"></span></td>
+                                        <td><span ng-bind="answer.Choice.Correct"></span></td>
+                                        <td><span ng-bind="answer.Choice.Description"></span></td>
+                                        <td><span ng-bind="answer.Choice.Question.Description"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

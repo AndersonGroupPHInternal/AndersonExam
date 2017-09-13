@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamEntity", "AndersonExamEntity\AndersonExamEntity.csproj", "{B1276600-587E-4BC8-9102-3F3B9A4CBE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamContext", "AndersonExamContext\AndersonExamContext.csproj", "{397132C8-5F8D-4C1E-8619-CA8BA2036005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamData", "AndersonExamData\AndersonExamData.csproj", "{78264F72-B93D-4666-8C5A-BE7B51C66275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamModel", "AndersonExamModel\AndersonExamModel.csproj", "{3F2DBF19-6BE0-46DD-84D3-F3529FF8FA8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamFunction", "AndersonExamFunction\AndersonExamFunction.csproj", "{0C711414-9B09-4D97-A7F9-D642CAE191C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndersonExamWeb", "AndersonExamWeb\AndersonExamWeb.csproj", "{4741F081-7D76-4C1E-9D09-E2DCFD81A444}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1276600-587E-4BC8-9102-3F3B9A4CBE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1276600-587E-4BC8-9102-3F3B9A4CBE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1276600-587E-4BC8-9102-3F3B9A4CBE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1276600-587E-4BC8-9102-3F3B9A4CBE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397132C8-5F8D-4C1E-8619-CA8BA2036005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397132C8-5F8D-4C1E-8619-CA8BA2036005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397132C8-5F8D-4C1E-8619-CA8BA2036005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397132C8-5F8D-4C1E-8619-CA8BA2036005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78264F72-B93D-4666-8C5A-BE7B51C66275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78264F72-B93D-4666-8C5A-BE7B51C66275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78264F72-B93D-4666-8C5A-BE7B51C66275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78264F72-B93D-4666-8C5A-BE7B51C66275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F2DBF19-6BE0-46DD-84D3-F3529FF8FA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F2DBF19-6BE0-46DD-84D3-F3529FF8FA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F2DBF19-6BE0-46DD-84D3-F3529FF8FA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F2DBF19-6BE0-46DD-84D3-F3529FF8FA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C711414-9B09-4D97-A7F9-D642CAE191C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C711414-9B09-4D97-A7F9-D642CAE191C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C711414-9B09-4D97-A7F9-D642CAE191C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C711414-9B09-4D97-A7F9-D642CAE191C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4741F081-7D76-4C1E-9D09-E2DCFD81A444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4741F081-7D76-4C1E-9D09-E2DCFD81A444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4741F081-7D76-4C1E-9D09-E2DCFD81A444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4741F081-7D76-4C1E-9D09-E2DCFD81A444}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

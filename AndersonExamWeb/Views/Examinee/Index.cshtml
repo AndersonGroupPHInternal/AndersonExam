@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="ExamineeController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover table-sm table-bordered ">
+                <thead>
+                    <tr class="thead-inverse">
+                        <th>ExamineeId</th>
+                        <th>PositionId</th>
+                        <th>ReferenceCode</th>
+                        <th>Lastname</th>
+                        <th>Firstname</th>
+                        <th>Middlename</th>
+                        <th>Percentage</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="clickableRow" ng-repeat="examinee in model.Examinees" ng-click="$event.originalEvent.dropdown || model.TakenExamsPage(examinee.ExamineeId)">
+                        <td><span ng-bind="examinee.ExamineeId"></span></td>
+                        <td><span ng-bind="examinee.PositionId"></span></td>
+                        <td><span ng-bind="examinee.ReferenceCode"></span></td>
+                        <td><span ng-bind="examinee.Lastname"></span></td>
+                        <td><span ng-bind="examinee.Firstname"></span></td>
+                        <td><span ng-bind="examinee.Middlename"></span></td>
+                        <td ng-init="model.Percentage(examinee)"><span ng-bind="examinee.Percentage"></span></td>
+                        <td ng-click="$event.originalEvent.dropdown = true">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.TakenExamsPage(examinee.ExamineeId)">Edit</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
