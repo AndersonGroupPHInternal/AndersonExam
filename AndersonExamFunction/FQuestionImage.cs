@@ -2,7 +2,9 @@
 using AndersonExamEntity;
 using AndersonExamModel;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace AndersonExamFunction
 {
@@ -18,6 +20,7 @@ namespace AndersonExamFunction
         #region CREATE
         public QuestionImage Create(QuestionImage questionImage)
         {
+            
             EQuestionImage eQuestionImage = EQuestion(questionImage);
             eQuestionImage = _iDQuestionImage.Create(eQuestionImage);
             return Question(eQuestionImage);
