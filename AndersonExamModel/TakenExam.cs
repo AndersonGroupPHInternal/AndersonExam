@@ -55,7 +55,8 @@ namespace AndersonExamModel
         public virtual Exam Exam { get; set; }
         public virtual Examinee Examinee { get; set; }
 
-        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }       
+
     }
 }
 

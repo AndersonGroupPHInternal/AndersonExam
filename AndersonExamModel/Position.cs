@@ -7,9 +7,9 @@ namespace AndersonExamModel
         public int PositionId { get; set; }
 
         public string Description { get; set; }
-        public string Name { get; set; }
+        public string PositionName { get; set; }
 
-        public virtual ICollection<ExamPosition> EExamPositions { get; set; }
+        public virtual ICollection<Position> Positions { get; set; }
         public virtual ICollection<Examinee> Examinees { get; set; }
     }
 }
