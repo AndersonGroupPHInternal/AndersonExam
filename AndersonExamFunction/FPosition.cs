@@ -51,7 +51,7 @@ namespace AndersonExamFunction
                 PositionId = a.PositionId,
 
                 Description = a.Description,
-                Name = a.Name
+                PositionName = a.PositionName
             });
 
             return returnPositions.ToList();
@@ -64,7 +64,7 @@ namespace AndersonExamFunction
                 PositionId = position.PositionId,
 
                 Description = position.Description,
-                Name = position.Name
+                PositionName = position.PositionName
             };
             return returnEPosition;
         }
@@ -76,9 +76,19 @@ namespace AndersonExamFunction
                 PositionId = ePosition.PositionId,
 
                 Description = ePosition.Description,
-                Name = ePosition.Name
+                PositionName = ePosition.PositionName
             };
             return returnPosition;
+        }
+
+        public Position Read(int positionId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Position> ReadExamForPosition(int positionId)
+        {
+            throw new System.NotImplementedException();
         }
         #endregion
     }
