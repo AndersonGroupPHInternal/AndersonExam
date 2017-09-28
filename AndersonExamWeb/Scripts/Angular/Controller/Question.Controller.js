@@ -12,6 +12,16 @@
         //variables
         vm.ExamId;
         //objects
+        vm.NewQuestionImages = {
+            QuestionId: 0,
+            Url: ''
+        }
+        vm.NewChoice = {
+            Correct: false,
+            QuestionId: 0,
+            Description: ''
+        }
+
         vm.Question = {
             ExamId: 0,
             Description: '',
@@ -23,6 +33,7 @@
         //public create
         vm.Create = Create;
         vm.CreateChoice = CreateChoice;
+        vm.CreateChoiceImage = CreateChoiceImage;
         vm.CreateQuestionImage = CreateQuestionImage;
         //public read
         vm.Initialise = Initialise;
@@ -41,6 +52,9 @@
         vm.UpdateChoiceRow = UpdateChoiceRow;
         //public delete
         vm.Delete = Delete;
+        //public other
+        vm.Attachment;
+        vm.UploadChoiceImageAttachment = UploadChoiceImageAttachment;
         //public create
         function Create() {
             QuestionService.Create(vm.Question)
@@ -52,14 +66,12 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-
                     vm.Question = {
                         ExamId: vm.ExamId,
                         Description: '',
                         Choices: [],
                         QuestionImages: []
                     };
-
                     Read();
                 })
                 .catch(function (result) {
@@ -75,8 +87,8 @@
                 });
         }
         function CreateQuestionImage(question) {
-            question.NewQuestionImage.QuestionId = question.QuestionId
-            ImageQuestionService.Create(question.NewQuestionImage)
+            question.NewQuestionImages.QuestionId = question.QuestionId
+            ImageQuestionService.CreateImage(question.NewQuestionImages)
                 .then(function (response) {
                     new PNotify({
                         title: 'QuestionImage',
@@ -91,8 +103,7 @@
                         Choices: [],
                         QuestionImages: []
                     };
-
-                    ReadImageQuestion(question);
+                    ReadQuestionImage(question);
                 })
             .catch(function (result) {
                 console.log(result);
@@ -106,9 +117,32 @@
             });
         }
 
+        function UploadChoiceImageAttachment() {
+            ImageChoiceService.CreateImage(vm.Attachment)
+                .then(function (response) {
+                    new PNotify({
+                        title: 'QuestionImage',
+                        text: 'QuestionImage Saved',
+                        type: 'success',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                })
+            .catch(function (result) {
+                console.log(result);
+                new PNotify({
+                    title: 'QuestionImageController.CreateQuestionImage',
+                    text: result.status + ' ' + result.statusText,
+                    type: 'error',
+                    hide: true,
+                    addclass: "stack-bottomright"
+                });
+            });
+        }
+
         function CreateChoice(question) {
-            question.NewChoice.QuestionId = question.QuestionId
-            ChoiceService.Create(question.NewChoice)
+            vm.NewChoice.QuestionId = question.QuestionId
+            ChoiceService.Create(vm.NewChoice)
                 .then(function (response) {
                     new PNotify({
                         title: 'Choice',
@@ -117,14 +151,12 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-
                     vm.Question = {
                         ExamId: vm.ExamId,
                         Description: '',
                         Choices: [],
                         QuestionImages: []
                     };
-
                     ReadChoices(question);
                 })
                 .catch(function (result) {
@@ -136,8 +168,38 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-
                 });
+        }
+
+        function CreateChoiceImage(choice) {
+            choice.NewChoiceImages.ChoiceId = choice.ChoiceId
+            ImageChoiceService.CreateImage(choice.NewChoiceImages)
+                .then(function (response) {
+                    new PNotify({
+                        title: 'ChoiceImage',
+                        text: 'ChoiceImage Saved',
+                        type: 'success',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                    vm.Question = {
+                        ExamId: vm.ExamId,
+                        Description: '',
+                        Choices: [],
+                        QuestionImages: []
+                    };
+                    ReadChoiceImage(choice);
+                })
+            .catch(function (result) {
+                console.log(result);
+                new PNotify({
+                    title: 'QuestionController.CreateChoiceImage',
+                    text: result.status + ' ' + result.statusText,
+                    type: 'error',
+                    hide: true,
+                    addclass: "stack-bottomright"
+                });
+            });
         }
         //public read
         function Initialise(examId) {
@@ -180,10 +242,10 @@
             }
         }
 
-        function ReadChoiceImage(question) {
-            ImageChoiceService.Read(question.ChoiceId)
+        function ReadChoiceImage(choice) {
+            ImageChoiceService.Read(choice.ChoiceId)
                 .then(function (response) {
-                    question.Choice = response.data;
+                    choice.Choice = response.data;
                 })
             .catch(function (result) {
                 console.log(result);
@@ -197,12 +259,12 @@
             });
         }
 
-        function ShowChoiceImage(question) {
-            if (question.ShowChoiceImage == undefined) {
-                question.ShowChoiceImage = true;
+        function ShowChoiceImage(choice) {
+            if (choice.ShowChoiceImage == undefined) {
+                choice.ShowChoiceImage = true;
             }
             else {
-                question.ShowChoiceImage = !question.ShowChoiceImage;
+                choice.ShowChoiceImage = !choice.ShowChoiceImage;
             }
         }
 

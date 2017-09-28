@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using AndersonExamFunction;
 using AndersonExamModel;
 using System.Web.Mvc;
+using System.Web;
+using System.IO;
+using System.Linq;
 
 namespace AndersonExamWeb.Controllers
 {
     public class QuestionImageController : Controller
     {
+        public ActionResult Exam()
+        {
+            return View();
+        }
         private IFQuestionImage _iFQuestionImage;
         public QuestionImageController(IFQuestionImage iFQuestionImage)
         {
@@ -17,9 +22,34 @@ namespace AndersonExamWeb.Controllers
         }
 
         #region Create
-        [HttpPut]
-        public JsonResult Create(QuestionImage questionImage)
+        [HttpPost]
+        public JsonResult Create(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
         {
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
+                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                file.SaveAs(path);
+                questionImage.Url = path;
+            }
+            _iFQuestionImage.Create(questionImage);
+            return Json(string.Empty);
+        }
+        #endregion
+
+        #region QuestionAddImage
+        [HttpPost]
+        public ActionResult QuestionAddImage(QuestionImage questionImage, HttpPostedFileBase file)
+        {
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
+                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                file.SaveAs(path);
+                questionImage.Url = path;
+            }
             _iFQuestionImage.Create(questionImage);
             return Json(string.Empty);
         }
@@ -32,6 +62,7 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFQuestionImage.Read(id));
         }
         #endregion
+
 
         #region Update
         //[HttpPost]

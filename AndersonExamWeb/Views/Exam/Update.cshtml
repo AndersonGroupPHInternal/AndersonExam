@@ -24,7 +24,7 @@
                     <table class="table table-hover table-sm table-bordered">
                         <thead>
                             <tr class="thead-inverse">
-                                <th class="col-sm-1">Question No</th>
+                                <th class="col-sm-1">Question No.</th>
                                 <th class="col-sm-1">Question Id</th>
                                 <th>Description</th>
                                 <th>Image</th>
@@ -32,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody ng-repeat="question in model.Questions" ng-init="model.ReadChoices(question); model.ReadQuestionImage(question)">
-                            <tr class="clickableRow" ng-click="$event.originalEvent.dropdown || model.ShowChoices(question) || model.ShowQuestionImage(question) || model.ShowChoiceImage(question)">
+                            <tr class="clickableRow" ng-click="$event.originalEvent.dropdown || model.ShowChoices(question) || model.ShowQuestionImage(question)">
                                 <td><span ng-bind="{{$index + 1 }}"></span></td>
                                 <td><span ng-bind="question.QuestionId"></span></td>
                                 <td>
@@ -41,7 +41,6 @@
                                 </td>
                                 <td>
                                     @*IMAGES*@
-                                    {{question}}
                                     <div ng-repeat="question in question.QuestionImages">
                                         <img ng-src="~/{{question.Url}}" alt="None"  style="height:150px;width:150px;"/>
                                     </div>
@@ -56,10 +55,13 @@
                                             <li><a href="#" ng-click="model.UpdateRow(question)" ng-show="question.UpdateMode != true">Update</a></li>
                                             <li><a href="#" ng-click="model.Update(question)" ng-show="question.UpdateMode == true">Save Changes</a></li>
                                             <li><a href="#" ng-click="model.Cancel(question)" ng-show="question.UpdateMode == true">Cancel Changes</a></li>
-                                            <li><a href="#" ng-click="model.DeleteQuestionImage(question, questionImage)">Delete Image</a></li>
-                                            <li><a href="#" ng-click="model.Delete(question)">Delete</a></li>
+                                            <li><a href="#" ng-click="model.Delete(question)">Delete Question</a></li>
                                         </ul>
                                     </div>
+                                    <form>
+                                        <input type="file" accept="image/x-png,image/gif,image/jpeg" file-model="question.NewQuestionImages.Attachment" />
+                                        <input type="submit" value="Add Image" class="btn btn-success" ng-click="model.CreateQuestionImage(question)" />
+                                    </form>
                                 </td>
                             </tr>
                             <tr ng-show="question.ShowChoices == true">
@@ -76,7 +78,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="choice in question.Choices">
+                                            <tr  ng-repeat="choice in question.Choices" ng-init="model.ReadChoiceImage(choice); model.ShowChoiceImage(choice)">
                                                 <td>
                                                     <span ng-bind="choice.Correct" ng-show="choice.UpdateMode != true"></span>
                                                     <input type="checkbox" ng-model="choice.NewCorrect" ng-show="choice.UpdateMode == true" />
@@ -89,8 +91,9 @@
                                                 </td>
                                                 <td>
                                                     @*PICTURE*@
-                                                    {{choice}}
-                                                    @*<img ng-src="~/{{choices.Url}}" alt="None" style="height:150px;width:150px;" />*@
+                                                    <div ng-repeat="choice in choice.Choice">
+                                                        <img ng-src="~/{{choice.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                    </div>
                                                 </td>
                                                 <td ng-click="$event.originalEvent.dropdown = true">
                                                     <div class="dropdown">
@@ -104,28 +107,26 @@
                                                             <li><a href="#" ng-click="model.DeleteChoice(question, choice)">Delete</a></li>
                                                         </ul>
                                                     </div>
+                                                    <form>
+                                                        <input type="file" accept="image/x-png,image/gif,image/jpeg" file-model="choice.NewChoiceImages.Attachment" />
+                                                        <input type="submit" value="Add Image" class="btn btn-success" ng-click="model.CreateChoiceImage(choice)" />
+                                                    </form>
                                                 </td>
-                                                @*<td>
-                                                    {{choice}}
-                                                </td>*@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" ng-model="question.NewChoice.Correct" />
+                                                    <input type="checkbox" ng-model="Model.NewChoice.Correct" />
                                                 </td>
-                                                <tf>
-                                                </tf>
-                                                <td colspan="2">
-                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="question.NewChoice.Description"></textarea>
+                                                <td colspan="2">    
+                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="Model.NewChoice.Description"></textarea>
                                                 </td>
                                                 <td>
                                                     @* PICTURES DITO *@
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary" ng-click="model.CreateChoice(question)">Create</button>
-                                                    <label class="btn btn-info btn-file">
-                                                        Browse<input type="file" style="display: none;" id="Url" accept="image/x-png,image/gif,image/jpeg" />
-                                                    </label>
+                                                    <form>
+                                                        <input type="submit" value="Create" class="btn btn-primary" ng-click="model.CreateChoice(question)"/>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @*<tr>
@@ -137,24 +138,21 @@
                                     </table>
                                 </td>
                             </tr>
-                                @*<tr>
-                                    <td colspan="4">
-                                        {{question}}
-                                    </td>
-                                </tr>*@
                         </tbody>
+                        <tr>
+                            <td colspan="3">
+                                <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="model.Question.Description"></textarea>
+                            </td>
+                            <td>
+                                @*PICTURE*@
+                            </td>
+                            <td>
+                                <form>
+                                    <input type="submit" value="Create" class="btn btn-primary" ng-click="model.Create()" />
+                                </form>
+                            </td>
+                        </tr>
                         <tbody>
-                            <tr>
-                                <td colspan="3">
-                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="model.Question.Description"></textarea>
-                                </td>
-                                <td>
-                                    <input type="file" id="Url" accept="image/x-png,image/gif,image/jpeg" />
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" ng-click="model.Create(); model.CreateQuestionImage(question)">Create</button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>  

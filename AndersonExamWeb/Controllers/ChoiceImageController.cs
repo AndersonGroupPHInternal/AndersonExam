@@ -2,6 +2,7 @@
 using AndersonExamModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,7 +25,20 @@ namespace AndersonExamWeb.Controllers
             return Json(string.Empty);
         }
         #endregion
-
+        [HttpPost]
+        public ActionResult ChoiceAddImage(ChoiceImage choiceImage, int choiceId, HttpPostedFileBase file)
+        {
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
+                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                file.SaveAs(path);
+                choiceImage.Url = path;
+            }
+            _iFChoiceImage.Create(choiceImage);
+            return Json(string.Empty);
+        }
         #region Read
         [HttpPost]
         public JsonResult Read(int id)

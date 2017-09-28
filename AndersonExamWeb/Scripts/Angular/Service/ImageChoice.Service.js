@@ -10,6 +10,7 @@
     function ImageChoiceService($http) {
         return {
             Create: Create,
+            CreateImage: CreateImage,
             Read: Read,
             Update: Update,
             Delete: Delete
@@ -21,6 +22,27 @@
                 url: '/ChoiceImage/Create',
                 data: $.param(choiceImage),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+        
+        function CreateImage(choiceImage) {
+            var data = {
+                choiceId: choiceImage.ChoiceId,
+                file: choiceImage.Attachment.files[0]
+            };
+            var getModelAsFormData = function (data) {
+                var dataAsFormData = new FormData();
+                angular.forEach(data, function (value, key) {
+                    dataAsFormData.append(key, value);
+                });
+                return dataAsFormData;
+            };
+            return $http({
+                method: 'POST',
+                url: '/ChoiceImage/ChoiceAddImage',
+                data: getModelAsFormData(data),
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             });
         }
 
