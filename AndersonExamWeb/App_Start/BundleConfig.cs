@@ -11,7 +11,7 @@ namespace AndersonExamWeb.App_Start
                 .IncludeDirectory("~/Scripts/Angular/Controller", "*.js", true)
                 .IncludeDirectory("~/Scripts/Angular/Directive", "*.js", true)
                 .IncludeDirectory("~/Scripts/Angular/Service", "*.js", true));
-
+                
             System.Web.Optimization.BundleTable.EnableOptimizations = false;
         }
     }

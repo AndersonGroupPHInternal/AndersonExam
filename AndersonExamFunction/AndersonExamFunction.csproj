@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FExamPosition.cs" />
     <Compile Include="FTakenExam.cs" />
     <Compile Include="FExaminee.cs" />
     <Compile Include="FPosition.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="FQuestion.cs" />
     <Compile Include="FExam.cs" />
     <Compile Include="FAnswer.cs" />
+    <Compile Include="IFExamPosition.cs" />
     <Compile Include="IFTakenExam.cs" />
     <Compile Include="IFExaminee.cs" />
     <Compile Include="IFPosition.cs" />

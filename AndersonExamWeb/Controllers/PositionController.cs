@@ -12,16 +12,6 @@ namespace AndersonExamWeb.Controllers
             _iFPosition = iFPosition;
         }
 
-        //#region Create
-        //[HttpPut]
-        //public JsonResult Create(Position position)
-        //{
-        //    _iFPosition.Create(position);
-        //    return Json(string.Empty);
-        //}
-
-        //#endregion
-
         #region Create
         [HttpGet]
         public ActionResult Create()
@@ -38,18 +28,31 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Read
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public JsonResult Read(int id)
+        public JsonResult Read()
         {
             return Json(_iFPosition.Read());
         }
+
         #endregion
 
         #region Update
-        [HttpPost]
-        public JsonResult Update(Position position)
+        [HttpGet]
+        public ActionResult Update(int id)
         {
-            return Json(_iFPosition.Update(position));
+            return View(_iFPosition.Read(id));
+        }
+
+        [HttpPost]
+        public ActionResult Update(Position position)
+        {
+            return View(_iFPosition.Update(position));
         }
         #endregion
 

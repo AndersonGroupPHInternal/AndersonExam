@@ -8,9 +8,9 @@ namespace AndersonExamFunction
 {
     public class FAnswer : IFAnswer
     {
-        private IDAnswer _iDAnswer;
+        private IDExamPosition _iDAnswer;
 
-        public FAnswer(IDAnswer iDAnswer)
+        public FAnswer(IDExamPosition iDAnswer)
         {
             _iDAnswer = iDAnswer;
         }

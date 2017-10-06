@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DExamPosition.cs" />
     <Compile Include="DChoice.cs" />
     <Compile Include="DChoiceImage.cs" />
     <Compile Include="DExam.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="IDChoice.cs" />
     <Compile Include="IDChoiceImage.cs" />
     <Compile Include="IDExam.cs" />
+    <Compile Include="IDExamPosition.cs" />
     <Compile Include="IDTakenExam.cs" />
     <Compile Include="IDExaminee.cs" />
     <Compile Include="IDPosition.cs" />

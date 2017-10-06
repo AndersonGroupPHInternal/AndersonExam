@@ -44,6 +44,7 @@ namespace AndersonExamWeb.App_Start
             container.RegisterType<IDAnswer, DAnswer>(new PerRequestLifetimeManager());
             container.RegisterType<IDChoice, DChoice>(new PerRequestLifetimeManager());
             container.RegisterType<IDChoiceImage, DChoiceImage>(new PerRequestLifetimeManager());
+            container.RegisterType<IDExamPosition, DExamPosition>(new PerRequestLifetimeManager());
             container.RegisterType<IDExam, DExam>(new PerRequestLifetimeManager());
             container.RegisterType<IDExaminee, DExaminee>(new PerRequestLifetimeManager());
             container.RegisterType<IDPosition, DPosition>(new PerRequestLifetimeManager());
@@ -56,6 +57,7 @@ namespace AndersonExamWeb.App_Start
             container.RegisterType<IFAnswer, FAnswer>(new PerRequestLifetimeManager());
             container.RegisterType<IFChoice, FChoice>(new PerRequestLifetimeManager());
             container.RegisterType<IFChoiceImage, FChoiceImage>(new PerRequestLifetimeManager());
+            container.RegisterType<IFExamPosition, FExamPosition>(new PerRequestLifetimeManager());
             container.RegisterType<IFExam, FExam>(new PerRequestLifetimeManager());
             container.RegisterType<IFExaminee, FExaminee>(new PerRequestLifetimeManager());
             container.RegisterType<IFPosition, FPosition>(new PerRequestLifetimeManager());
