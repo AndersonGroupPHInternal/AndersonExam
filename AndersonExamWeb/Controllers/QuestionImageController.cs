@@ -23,24 +23,16 @@ namespace AndersonExamWeb.Controllers
 
         #region Create
         [HttpPost]
-        public JsonResult Create(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
+        public JsonResult Create(QuestionImage questionImage)
         {
-            if (file.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(file.FileName);
-                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
-                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                file.SaveAs(path);
-                questionImage.Url = path;
-            }
             _iFQuestionImage.Create(questionImage);
             return Json(string.Empty);
         }
-        #endregion
+        #endregion 
 
         #region QuestionAddImage
         [HttpPost]
-        public ActionResult QuestionAddImage(QuestionImage questionImage, HttpPostedFileBase file)
+        public ActionResult QuestionAddImage(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
         {
             if (file.ContentLength > 0)
             {

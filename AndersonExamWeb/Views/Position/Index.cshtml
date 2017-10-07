@@ -14,8 +14,9 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th>PositionId</th>
-                        <th>PositionName</th>                    
+                        <th>Position Id</th>
+                        <th>Position Name</th>    
+                        <th>Position Description</th>                  
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                     <tr class="clickableRow" ng-repeat="position in model.Position" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(position.PositionId)">
                         <td><span ng-bind="position.PositionId"></span></td>
                         <td><span ng-bind="position.PositionName"></span></td>
+                        <td><span ng-bind="position.Description"></span></td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

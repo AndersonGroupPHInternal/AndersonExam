@@ -38,7 +38,7 @@
             };
             return $http({
                 method: 'POST',
-                url: '/QuestionImage/Create',
+                url: '/QuestionImage/QuestionAddImage',
                 data: getModelAsFormData(data),
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }

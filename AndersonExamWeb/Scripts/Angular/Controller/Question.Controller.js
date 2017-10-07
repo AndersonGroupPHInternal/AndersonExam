@@ -245,7 +245,7 @@
         function ReadChoiceImage(choice) {
             ImageChoiceService.Read(choice.ChoiceId)
                 .then(function (response) {
-                    choice.Choice = response.data;
+                    choice.ChoiceImages = response.data;
                 })
             .catch(function (result) {
                 console.log(result);

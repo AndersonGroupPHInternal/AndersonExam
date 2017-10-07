@@ -7,7 +7,7 @@ using System.Linq;
 namespace AndersonExamFunction
 {
     public class FChoiceImage : IFChoiceImage
-    {
+    { 
         private IDChoiceImage _iDChoiceImage;
 
         public FChoiceImage(IDChoiceImage iDChoiceImage)

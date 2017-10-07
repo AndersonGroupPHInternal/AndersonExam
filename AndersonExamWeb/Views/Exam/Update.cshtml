@@ -91,8 +91,8 @@
                                                 </td>
                                                 <td>
                                                     @*PICTURE*@
-                                                    <div ng-repeat="choice in choice.Choice">
-                                                        <img ng-src="~/{{choice.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                    <div ng-repeat="choiceImage in choice.ChoiceImages">
+                                                        <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
                                                     </div>
                                                 </td>
                                                 <td ng-click="$event.originalEvent.dropdown = true">
@@ -115,10 +115,10 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" ng-model="Model.NewChoice.Correct" />
+                                                    <input type="checkbox" ng-model="model.NewChoice.Correct" />
                                                 </td>
                                                 <td colspan="2">    
-                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="Model.NewChoice.Description"></textarea>
+                                                    <textarea type="text" class="form-control" id="Description" placeholder="Description" rows="3" ng-model="model.NewChoice.Description"></textarea>
                                                 </td>
                                                 <td>
                                                     @* PICTURES DITO *@
