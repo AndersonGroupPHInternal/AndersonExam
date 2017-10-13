@@ -1,8 +1,18 @@
-﻿<input type="hidden" name="ExamId" value="@Model.ExamineeId" />
+﻿@using AndersonExamModel;
+@model Examinee
 
+
+<input type="hidden" name="ExamId" value="@Model.ExamineeId" />
 <div class="form-group">
     <label for="Position">Position</label>
-    <input type="number" class="form-control" id="Position" name="PositionId" placeholder="Position" value="@Model.PositionId">
+    <ui-select ng-model="model.SingleSelect">
+        <ui-select-match placeholder="Select Position...">
+            <span ng-bind="$select.selected.DropDownItemDescription"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="position in (model.Position | filter: $selected.search) track by $index">
+            <span ng-bind="position.PositionName"></span>
+        </ui-select-choices>
+    </ui-select>
 </div>
 <div class="form-group">
     <label for="ReferenceCode">ReferenceCode</label>
@@ -23,3 +33,4 @@
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
 </div>
+

@@ -11,15 +11,15 @@
     <div class="col-sm-12">
         <form action="~/Position/Update" method="post">
             @{
-                Html.RenderPartial("_Position", Model); 
+                Html.RenderPartial("_Position", Model);
             }
         </form>
     </div>
 </div>
-<div class="panel panel-default">
+@*<div class="panel panel-default">
     <div class="panel-heading">Exam Lists</div>
     <div class="panel-body">
-        <div ng-controller="PositionController as model" ng-init="model.Initialise(@Model.PositionId)">
+        <div ng-controller="PositionController as model" ng-init="model.Initialise(@Model.PositionId)" >
             <div class="row">
                 <div class="col-sm-12">
                     <table class="table table-hover table-sm table-bordered ">
@@ -32,36 +32,41 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="examPosition in model.ExamPositions" ng-init="model.ReadExamPosition()">
-                            <tr >
+                        <tbody ng-repeat="examPosition in model.ExamPositions">
+                            <tr>
                                 <td><span ng-bind="examPosition.ExamId"></span></td>
                                 <td><span ng-bind="examPosition.Exam.TimeLimit"></span></td>
                                 <td><span ng-bind="examPosition.Exam.Name"></span></td>
                                 <td><span ng-bind="examPosition.Exam.Description"></span></td>
-                                <td><button ng-click="model.DeleteExamPosition(examPosition)" class ="btn btn-danger btn-md">Remove</button></td>
+                                <td>
+                                    <form>
+                                        <input type="submit" value="Remove" class="btn btn-danger" ng-click="model.DeleteExamPosition(examPosition)" />
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
                 <div class="col-sm-offset-3 col-sm-6">
-                    <div>
-                        <label>Add Exams</label>
-                        <ui-select multiple ng-model="model.MultipleSelected">
-                            <ui-select-match placeholder="Select Exam...">
-                                {{$item.PositionId}} - {{$item.PositionName}}
-                            </ui-select-match>
-                            <ui-select-choices repeat="position in (model.Position | filter: $selected.search) track by $index"> 
-                                <span ng-bind="position.PositionName"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                        <form>
-                            <input type="submit" value="Add" ng-click="model.Create(examPosition)"/>
-                        </form> 
-                </div>
+                    <form method="put" action="~/ExamPosition/Create">
+                        <div>
+                            <label>Add Exams</label>
+                            <ui-select multiple ng-model="model.MultipleSelected">
+                                <ui-select-match placeholder="Select Exam...">
+                                    {{$item.ExamId}} - {{$item.Name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="exam in (model.Exams | filter: $selected.search) track by $index">
+                                    <span ng-bind="exam.ExamId"></span> - <span ng-bind="exam.Name"></span>
+                                </ui-select-choices>
+                            </ui-select>                    
+                            <div ng-repeat="selected in model.MultipleSelected">
 
+                            </div>
+                        </div>
+                        <input type="submit" value="Add"/>
+                    </form> 
+                </div>
             </div>
         </div>
     </div>
-</div>
+</div>*@

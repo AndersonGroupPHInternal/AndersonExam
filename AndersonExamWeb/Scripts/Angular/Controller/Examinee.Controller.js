@@ -5,9 +5,9 @@
         .module('App')
         .controller('ExamineeController', ExamineeController);
 
-    ExamineeController.$inject = ['$window', 'ExamineeService'];
+    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService'];
 
-    function ExamineeController($window, ExamineeService) {
+    function ExamineeController($window, ExamineeService, PositionService) {
         var vm = this;
         //variables
         //objects
@@ -16,14 +16,32 @@
         //public create
         //public read
         vm.Initialise = Initialise;
+        vm.ReadForPosition = ReadForPosition;
         vm.Percentage = Percentage;
         vm.TakenExamsPage = TakenExamsPage;
         //public update
         //public delete
-        //public create
-        //public read
+        //public other
+        vm.SingleSelect;
         function Initialise() {
             Read();
+            ReadForPosition();
+        }
+        function ReadForPosition() {
+            PositionService.Read()
+                .then(function (response) {
+                    vm.SingleSelect = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
+                }); 
         }
 
         function Percentage(examinee) {

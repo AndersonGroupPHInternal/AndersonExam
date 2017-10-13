@@ -687,6 +687,7 @@
     <Content Include="Views\TakenExam\Index.cshtml" />
     <Content Include="Views\TakenExam\Update.cshtml" />
     <Content Include="Views\TakenExam\_TakenExam.cshtml" />
+    <Content Include="Views\TakenExam\TakenExam.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
