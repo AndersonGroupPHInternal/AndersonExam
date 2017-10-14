@@ -10,7 +10,7 @@
     function ExamService($http) {
         return {
             Read: Read,
-            ReadNotInExamSet: ReadNotInExamSet,
+            ReadExamForPosition: ReadExamForPosition,
             Delete: Delete
         }
 
@@ -22,10 +22,10 @@
             });
         }
 
-        function ReadNotInExamSet(examSetId) {
+        function ReadExamForPosition(positionId) {
             return $http({
                 method: 'POST',
-                url: '/Exam/ReadNotInExamSet/' + examSetId,
+                url: '/Exam/ReadExamForPosition/' + positionId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

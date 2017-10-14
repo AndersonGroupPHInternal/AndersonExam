@@ -1,6 +1,7 @@
 ﻿using AndersonExamFunction;
 using AndersonExamModel;
 using System.Web.Mvc;
+using System;
 
 namespace AndersonExamWeb.Controllers
 {
@@ -14,8 +15,9 @@ namespace AndersonExamWeb.Controllers
 
         #region Create
         [HttpPut]
-        public JsonResult Create(ExamPosition examPosition)
+        public JsonResult Create(ExamPosition examPosition, int positionId)
         {
+
             _iFExamPosition.Create(examPosition);
             return Json(string.Empty);
         }

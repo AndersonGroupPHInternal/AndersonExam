@@ -1,14 +1,17 @@
 ﻿using AndersonExamFunction;
 using AndersonExamModel;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
     public class PositionController : Controller
     {
+        private IFExamPosition _iFExamPosition;
         private IFPosition _iFPosition;
-        public PositionController(IFPosition iFPosition)
+        public PositionController(IFExamPosition iFExamPosition, IFPosition iFPosition)
         {
+            _iFExamPosition = iFExamPosition;
             _iFPosition = iFPosition;
         }
 
@@ -22,8 +25,9 @@ namespace AndersonExamWeb.Controllers
         [HttpPost]
         public ActionResult Create(Position position)
         {
-            position = _iFPosition.Create(position);
-            return RedirectToAction("Update", new { id = position.PositionId });
+            var positionCreated = _iFPosition.Create(position);
+            _iFExamPosition.Create(positionCreated.PositionId, position.ExamPositions.ToList());
+            return RedirectToAction("Update", new { id = positionCreated.PositionId });
         }
         #endregion
 
@@ -52,7 +56,9 @@ namespace AndersonExamWeb.Controllers
         [HttpPost]
         public ActionResult Update(Position position)
         {
-            return View(_iFPosition.Update(position));
+            _iFExamPosition.Delete(position.PositionId);
+            _iFExamPosition.Create(position.PositionId, position.ExamPositions.ToList());
+            return RedirectToAction("Update", new { id = position.PositionId }); //Nagiging post ung refresh pag ung code kanina
         }
         #endregion
 

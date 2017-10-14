@@ -9,6 +9,59 @@
     <label for="PositionName">Position Description</label>
     <input type="text" class="form-control" id="Description" name="Description" placeholder="Description" value="@Model.Description">
 </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Exam Lists</div>
+    <div class="panel-body">
+        <div ng-controller="PositionController as model" ng-init="model.Initialise(@Model.PositionId)">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <div>
+                        <label>Add Exams</label>
+                        <ui-select multiple ng-model="model.SelectedExam">
+                            <ui-select-match placeholder="Select Exam...">
+                                {{$item.ExamId}} - {{$item.Name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="exam in (model.Exams | filter: $selected.search) track by $index">
+                                <span ng-bind="exam.ExamId"></span> - <span ng-bind="exam.Name"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                        <div ng-repeat="selected in model.MultipleSelected">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-sm table-bordered ">
+                        <thead>
+                            <tr class="thead-inverse">
+                                <th>Exam Id</th>
+                                <th>Time Limit(Sec.)</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="exam in model.SelectedExam">
+                            <tr>
+                                <td>
+                                    <span ng-bind="exam.ExamId"></span>
+                                    <input type="hidden" name="ExamPositions[{{$index}}].ExamId" value="{{exam.ExamId}}" />
+                                </td>
+                                <td>
+                                    <span ng-bind="exam.TimeLimit"></span>
+                                </td>
+                                <td><span ng-bind="exam.Name"></span></td>
+                                <td><span ng-bind="exam.Description"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />
 </div>

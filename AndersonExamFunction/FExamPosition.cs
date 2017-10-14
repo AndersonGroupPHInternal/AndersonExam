@@ -23,6 +23,16 @@ namespace AndersonExamFunction
             eExamPosition = _iDExamPosition.Create(eExamPosition);
             return (ExamPosition(eExamPosition));
         }
+
+        public void Create(int positionId, List<ExamPosition> examPositions)
+        {
+            List<EExamPosition> eExamPositions = EExamPositions(examPositions);
+            foreach (EExamPosition eExamPosition in eExamPositions)
+            {
+                eExamPosition.PositionId = positionId;
+                _iDExamPosition.Create(eExamPosition);
+            }
+        }
         #endregion
 
         #region Read
@@ -34,7 +44,12 @@ namespace AndersonExamFunction
         #endregion
 
         #region Delete
-        public void Delete(ExamPosition examPosition)
+        public void Delete(int positionId)
+        {
+            _iDExamPosition.Delete<EExamPosition>(a => a.PositionId == positionId);
+        }
+
+        public void Delete(ExamPosition examPosition) //Walang ExamPositionId
         {
             _iDExamPosition.Delete(EExamPosition(examPosition));
         }
@@ -57,6 +72,16 @@ namespace AndersonExamFunction
                 ExamPositionId = eExamposition.ExamPositionId
             };
             return returnExamPosition;
+        }
+
+        private List<EExamPosition> EExamPositions(List<ExamPosition> examPosition)
+        {
+            return examPosition.Select(a => new EExamPosition
+            {
+                ExamId = a.ExamId,
+                ExamPositionId = a.ExamPositionId,
+                PositionId = a.PositionId
+            }).ToList();
         }
 
         private List<ExamPosition> ExamPositions(List<EExamPosition> eExamposition)

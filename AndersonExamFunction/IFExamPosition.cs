@@ -1,9 +1,5 @@
 ﻿using AndersonExamModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AndersonExamFunction
 {
@@ -11,6 +7,7 @@ namespace AndersonExamFunction
     {
         #region CREATE
         ExamPosition Create(ExamPosition ExamPosition);
+        void Create(int positionId, List<ExamPosition> examPositions);
         #endregion
 
         #region READ
@@ -21,6 +18,7 @@ namespace AndersonExamFunction
         #endregion
 
         #region DELETE
+        void Delete(int positionId);
         void Delete(ExamPosition ExamPosition);
         #endregion
 
