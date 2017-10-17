@@ -13,6 +13,7 @@
         //objects
         //arrays
         vm.Examinees;
+        vm.Positions = [];
         //public create
         //public read
         vm.Initialise = Initialise;
@@ -30,7 +31,7 @@
         function ReadForPosition() {
             PositionService.Read()
                 .then(function (response) {
-                    vm.SingleSelect = response.data;
+                    vm.Positions = response.data;
                 })
                 .catch(function (data, status) {
                     new PNotify({
