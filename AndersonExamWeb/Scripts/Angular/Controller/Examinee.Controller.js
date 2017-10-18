@@ -13,6 +13,7 @@
         //objects
         //arrays
         vm.Examinees;
+        vm.Positions = [];
         //public create
         //public read
         vm.Initialise = Initialise;
