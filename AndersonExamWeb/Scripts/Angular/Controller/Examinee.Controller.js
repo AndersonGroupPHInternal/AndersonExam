@@ -13,6 +13,7 @@
         //objects
         //arrays
         vm.Examinees;
+        vm.Positions;
         //public create
         //public read
         vm.Initialise = Initialise;
@@ -21,6 +22,7 @@
         vm.TakenExamsPage = TakenExamsPage;
         //public update
         //public delete
+        vm.Delete = Delete;
         //public other
         vm.SingleSelect;
         function Initialise() {
@@ -30,7 +32,7 @@
         function ReadForPosition() {
             PositionService.Read()
                 .then(function (response) {
-                    vm.SingleSelect = response.data;
+                    vm.Positions = response.data;
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -79,6 +81,22 @@
                         addclass: "stack-bottomright"
                     });
 
+                });
+        }
+
+        function Delete(examineeId) {
+            ExamineeService.Delete(examineeId)
+                .then(function (response) {
+                    Read();
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
                 });
         }
 
