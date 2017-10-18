@@ -33,9 +33,8 @@ namespace AndersonExamWeb.Controllers
         {
             try
             {
-                //delete
                 examinee = _iFExaminee.Create(examinee);
-                return RedirectToAction("SelectExam");
+                return View(examinee);
             }
             catch (Exception ex)
             {
@@ -80,12 +79,6 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Delete
-        [HttpDelete]
-        public JsonResult Delete(int id)
-        {
-            _iFExaminee.Delete(id);
-            return Json(string.Empty);
-        }
         #endregion
 
     }

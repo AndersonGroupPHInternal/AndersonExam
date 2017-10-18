@@ -1,14 +1,15 @@
 ﻿@using AndersonExamModel;
 @model Examinee
 
-<div class="form-group" ng-controller="ExamineeController as model" ng-init="model.ReadForPosition()">
-    <input type="hidden" name="PositionId" value="{{model.Position.PositionId}}" />
+
+<input type="hidden" name="ExamId" value="@Model.ExamineeId" />
+<div class="form-group">
     <label for="Position">Position</label>
-    <ui-select ng-model="model.Position">
+    <ui-select ng-model="model.SingleSelect">
         <ui-select-match placeholder="Select Position...">
-            <span ng-bind="$select.selected.PositionName"></span>
+            <span ng-bind="$select.selected.DropDownItemDescription"></span>
         </ui-select-match>
-        <ui-select-choices repeat="position in (model.Positions | filter: $selected.search) track by $index">
+        <ui-select-choices repeat="position in (model.Position | filter: $selected.search) track by $index">
             <span ng-bind="position.PositionName"></span>
         </ui-select-choices>
     </ui-select>

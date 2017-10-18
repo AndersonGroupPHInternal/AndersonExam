@@ -58,7 +58,6 @@ namespace AndersonExamWeb.Controllers
         {
             _iFExamPosition.Delete(position.PositionId);
             _iFExamPosition.Create(position.PositionId, position.ExamPositions.ToList());
-            _iFPosition.Update(position);
             return RedirectToAction("Update", new { id = position.PositionId }); //Nagiging post ung refresh pag ung code kanina
         }
         #endregion
