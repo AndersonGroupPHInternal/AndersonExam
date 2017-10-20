@@ -1,0 +1,44 @@
+﻿@using AndersonExamModel;
+@model Examinee
+
+
+@{
+    ViewBag.Title = "SelectExam";
+}
+
+<h2>Select Exam</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">Exams</div>
+    <div class="panel-body">
+        <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamineeId)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-sm table-bordered">
+                        <thead>
+                            <tr class="thead-inverse">
+                                <th>Name</th>
+                                <th>Time Limit(sec)</th>
+                                <th>Description</th>
+                                <th>Instruction</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="exam in model.Exams">
+                                <td><span ng-bind="exam.TimeLimit"></span></td>
+                                <td><span ng-bind="exam.Name"></span></td>
+                                <td><span ng-bind="exam.Description"></span></td>
+                                <td><span ng-bind="exam.Instruction"></span></td>
+                                <td>
+                                    <from>
+                                        <input type="submit" ng-click="model.GoToTakeExam(examId)" />
+                                    </from>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

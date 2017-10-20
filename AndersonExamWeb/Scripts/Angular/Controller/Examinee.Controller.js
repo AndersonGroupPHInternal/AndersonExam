@@ -5,18 +5,22 @@
         .module('App')
         .controller('ExamineeController', ExamineeController);
 
-    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService'];
+    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService', 'ExamService'];
 
-    function ExamineeController($window, ExamineeService, PositionService) {
+    function ExamineeController($window, ExamineeService, PositionService, ExamService) {
         var vm = this;
         //variables
+        vm.ExamineeId;
         //objects
         //arrays
+        vm.Exams;
         vm.Examinees;
-        vm.Positions = [];
+        vm.Positions;
         //public create
         //public read
         vm.Initialise = Initialise;
+        vm.InitialiseForTakeExam = InitialiseForTakeExam;
+        vm.ReadExamForExaminee = ReadExamForExaminee;
         vm.ReadForPosition = ReadForPosition;
         vm.Percentage = Percentage;
         vm.TakenExamsPage = TakenExamsPage;
@@ -24,11 +28,39 @@
         //public delete
         vm.Delete = Delete;
         //public other
+        vm.GoToTakeExam = GoToTakeExam;
         vm.SingleSelect;
         function Initialise() {
             Read();
             ReadForPosition();
         }
+
+        function GoToTakeExam(examId) {
+            $window.location.href = '../Examinee/TakeExam' + examId;
+        }
+
+        function InitialiseForTakeExam(examineeId) {
+            vm.ExamineeId = examineeId;
+            ReadExamForExaminee();
+            Read();
+        }
+
+        function ReadExamForExaminee() {
+            ExamService.ReadExamForExaminee(vm.ExamineeId)
+                .then(function (response) {
+                    vm.Exams = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                })
+        }
+
         function ReadForPosition() {
             PositionService.Read()
                 .then(function (response) {

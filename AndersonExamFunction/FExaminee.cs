@@ -46,6 +46,10 @@ namespace AndersonExamFunction
         #endregion
 
         #region DELETE
+        public void Delete(int examineeId)
+        {
+            _iDExaminee.Delete<EExaminee>(a => a.ExamineeId == examineeId);
+        }
         #endregion
 
         #region OTHER FUNCTION

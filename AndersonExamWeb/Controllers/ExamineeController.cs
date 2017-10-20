@@ -7,6 +7,7 @@ namespace AndersonExamWeb.Controllers
 {
     public class ExamineeController : Controller
     {
+        int id;
         private IFExaminee _iFExaminee;
         public ExamineeController(IFExaminee iFExaminee)
         {
@@ -28,18 +29,32 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult SelectExam()
+        {
+            try
+            {
+                return View(new Examinee());
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
         [HttpPost]
         public ActionResult Create(Examinee examinee)
         {
             try
             {
+                //delete
                 examinee = _iFExaminee.Create(examinee);
-                return View(examinee);
+                Session[id] = examinee.ExamineeId;
+                return RedirectToAction("SelectExam", new { id =  examinee.ExamineeId});
             }
             catch (Exception ex)
             {
                 return Json(ex);
-
             }
         }
         #endregion
@@ -79,6 +94,12 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Delete
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            _iFExaminee.Delete(id);
+            return Json(string.Empty);
+        }
         #endregion
 
     }
