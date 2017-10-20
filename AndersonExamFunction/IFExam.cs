@@ -13,6 +13,7 @@ namespace AndersonExamFunction
         Exam Read(int examId);
         List<Exam> Read();
         List<Exam> ReadExamForPosition(int positionId);
+        List<Exam> ReadExamForExaminee(int examineeId);
         #endregion
 
         #region UPDATE

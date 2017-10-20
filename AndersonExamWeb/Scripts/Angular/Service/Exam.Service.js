@@ -10,6 +10,7 @@
     function ExamService($http) {
         return {
             Read: Read,
+            ReadExamForExaminee: ReadExamForExaminee,
             ReadExamForPosition: ReadExamForPosition,
             Delete: Delete
         }
@@ -18,6 +19,14 @@
             return $http({
                 method: 'POST',
                 url: '/Exam/Read',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadExamForExaminee(examineeId) {
+            return $http({
+                method: 'POST',
+                url: '/Exam/ReadExamForExaminee/' + examineeId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

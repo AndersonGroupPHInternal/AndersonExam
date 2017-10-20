@@ -42,6 +42,12 @@ namespace AndersonExamWeb.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReadExamForExaminee(int id)
+        {
+            return Json(_iFExam.ReadExamForExaminee(id));
+        }
+
+        [HttpPost]
         public JsonResult ReadExamForPosition(int id)
         {
             return Json(_iFExam.ReadExamForPosition(id));

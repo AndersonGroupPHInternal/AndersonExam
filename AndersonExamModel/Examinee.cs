@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.SessionState;
 
 namespace AndersonExamModel
 {
@@ -14,7 +15,7 @@ namespace AndersonExamModel
         public string Middlename { get; set; }
 
         public virtual Position Position { get; set; }
-
+        public HttpSessionState Session { get; }
         public virtual ICollection<TakenExam> TakenExams { get; set; }
     }
 }
