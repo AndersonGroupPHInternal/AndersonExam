@@ -12,6 +12,7 @@
             Read: Read,
             ReadExamForExaminee: ReadExamForExaminee,
             ReadExamForPosition: ReadExamForPosition,
+            ReadExamForTakeExam: ReadExamForTakeExam,
             Delete: Delete
         }
 
@@ -23,10 +24,10 @@
             });
         }
 
-        function ReadExamForExaminee(examineeId) {
+        function ReadExamForExaminee() {
             return $http({
                 method: 'POST',
-                url: '/Exam/ReadExamForExaminee/' + examineeId,
+                url: '/Exam/ReadExamForExaminee/',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
@@ -35,6 +36,14 @@
             return $http({
                 method: 'POST',
                 url: '/Exam/ReadExamForPosition/' + positionId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadExamForTakeExam(examId) {
+            return $http({
+                method: 'POST',
+                url: '/Exam/ReadExamForTakeExam/' + examId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

@@ -5,23 +5,28 @@
         .module('App')
         .controller('ExamineeController', ExamineeController);
 
-    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService', 'ExamService'];
+    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService', 'ExamService', 'QuestionService', 'ChoiceService'];
 
-    function ExamineeController($window, ExamineeService, PositionService, ExamService) {
+    function ExamineeController($window, ExamineeService, PositionService, ExamService, QuestionService, ChoiceService) {
         var vm = this;
         //variables
         vm.ExamineeId;
+        vm.ExamId;
         //objects
         //arrays
         vm.Exams;
         vm.Examinees;
         vm.Positions;
+        vm.Questions;
         //public create
         //public read
         vm.Initialise = Initialise;
         vm.InitialiseForTakeExam = InitialiseForTakeExam;
-        vm.ReadExamForExaminee = ReadExamForExaminee;
+        vm.InitialiseForSelectExam = InitialiseForSelectExam;
+        vm.ReadExamForExaminee = ReadExamForExaminee;   
         vm.ReadForPosition = ReadForPosition;
+        vm.ReadForQuestion = ReadForQuestion;
+        vm.ReadExamForTakeExam = ReadExamForTakeExam;
         vm.Percentage = Percentage;
         vm.TakenExamsPage = TakenExamsPage;
         //public update
@@ -35,18 +40,40 @@
             ReadForPosition();
         }
 
-        function GoToTakeExam(examId) {
-            $window.location.href = '../Examinee/TakeExam' + examId;
+        function GoToTakeExam(ExamId) {
+            $window.location.href = '../Examinee/TakeExam/' + ExamId;
         }
 
-        function InitialiseForTakeExam(examineeId) {
-            vm.ExamineeId = examineeId;
-            ReadExamForExaminee();
+        function InitialiseForSelectExam() {
             Read();
+        }
+        
+        function InitialiseForTakeExam(ExamId) {
+            vm.ExamId = ExamId;
+            Read();
+            ReadExamForTakeExam();
+            ReadForQuestion();
+        }
+
+        //READ
+        function ReadExamForTakeExam() {
+            ExamService.ReadExamForTakeExam(vm.ExamId)
+                .then(function (response) {
+                    vm.Exams = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                })
         }
 
         function ReadExamForExaminee() {
-            ExamService.ReadExamForExaminee(vm.ExamineeId)
+            ExamService.ReadExamForExaminee()
                 .then(function (response) {
                     vm.Exams = response.data;
                 })
@@ -75,9 +102,26 @@
                         addclass: "stack-bottomright"
                     });
 
-                }); 
+                });
         }
 
+        function ReadForQuestion() {
+            QuestionService.ReadQuestionForTakeExam(vm.ExamId)
+                .then(function (response){
+                    vm.Questions = response.data;
+                })
+                .catch(function (data, status) {
+                new PNotify({
+                    title: status,
+                    text: data,
+                    type: 'error',
+                    hide: true,
+                    addclass: "stack-bottomright"
+                });
+
+            });
+        }
+        //end Read
         function Percentage(examinee) {
             ExamineeService.Percentage(examinee.ExamineeId)
                 .then(function (response) {

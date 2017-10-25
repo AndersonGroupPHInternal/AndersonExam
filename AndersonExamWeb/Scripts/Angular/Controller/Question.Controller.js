@@ -204,7 +204,6 @@
         //public read
         function Initialise(examId) {
             vm.ExamId = examId;
-
             Read();
 
             vm.Question = {
