@@ -24,15 +24,24 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="panel-heading">Questions</div>
                     <table class="table table-hover table-sm table-bordered">
                         <thead>
                             <tr class="thead-inverse">
-                                <th><h4>Questions</h4></th>
+                                <th class="col-sm-1">Question No.</th>
+                                <th>Description</th>
+                                <th>Image</th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="question in model.Questions">
+                        <tbody ng-repeat="question in model.Questions" ng-init="model.ReadForChoice(question); model.ReadForQuestionImage(question)">
                             <tr>
+                                <td><span ng-bind="{{$index + 1 }}"></span></td>
                                 <td><span ng-bind="question.Description"></span></td>
+                                <td>
+                                    <div ng-repeat="question in question.QuestionImages">
+                                        <img ng-src="~/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="5">
@@ -40,20 +49,24 @@
                                     <table class="table table-hover table-sm table-bordered">
                                         <thead>
                                             <tr>
-                                                <th class="col-sm-1">Action</th>
+                                                <th>Action</th>
                                                 <th>Description</th>
                                                 <th>Image</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
+                                            <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
+                                                <td class="col-sm-1">
                                                     <form>
-                                                        <input type="radio" name="Answer">
+                                                        <input type="radio" name="choice" value="awd">
                                                     </form>
                                                 </td>
-                                                <td><span ng-bind=""></span></td>
-                                                <td><span ng-bind=""></span></td>
+                                                <td><span ng-bind="choice.Description"></span></td>
+                                                <td>
+                                                    <div ng-repeat="choiceImage in choice.ChoiceImages">
+                                                        <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

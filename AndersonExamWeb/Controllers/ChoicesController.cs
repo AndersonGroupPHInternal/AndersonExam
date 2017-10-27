@@ -27,6 +27,11 @@ namespace AndersonExamWeb.Controllers
         {
             return Json(_iFChoice.Read(id));
         }
+
+        public JsonResult ReadForTakeExam(int id)
+        {
+            return Json(_iFChoice.ReadForTakeExam(id));
+        }
         #endregion
 
         #region Update

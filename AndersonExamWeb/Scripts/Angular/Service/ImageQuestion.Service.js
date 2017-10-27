@@ -12,6 +12,7 @@
             Create: Create,
             CreateImage: CreateImage,
             Read: Read,
+            ReadForTakeExam: ReadForTakeExam,
             Update: Update,
             Delete: Delete
         }
@@ -49,6 +50,14 @@
             return $http({
                 method: 'POST',
                 url: '/QuestionImage/Read/' + questionId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadForTakeExam(questionId) {
+            return $http({
+                method: 'POST',
+                url: '/QuestionImage/ReadForTakeExam/' + questionId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

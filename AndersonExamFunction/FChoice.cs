@@ -30,6 +30,12 @@ namespace AndersonExamFunction
             List<EChoice> eChoices = _iDChoice.List<EChoice>(a => a.QuestionId == questionId);
             return Choices(eChoices);
         }
+
+        public List<Choice> ReadForTakeExam(int questionId)
+        {
+            List<EChoice> eChoices = _iDChoice.List<EChoice>(a => a.QuestionId == questionId);
+            return Choices(eChoices);
+        }
         #endregion
 
         #region UPDATE

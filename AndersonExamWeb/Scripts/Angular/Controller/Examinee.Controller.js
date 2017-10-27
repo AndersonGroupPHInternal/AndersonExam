@@ -5,9 +5,9 @@
         .module('App')
         .controller('ExamineeController', ExamineeController);
 
-    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService', 'ExamService', 'QuestionService', 'ChoiceService'];
+    ExamineeController.$inject = ['$window', 'ExamineeService', 'PositionService', 'ExamService', 'QuestionService', 'ChoiceService', 'ImageQuestionService', 'ImageChoiceService'];
 
-    function ExamineeController($window, ExamineeService, PositionService, ExamService, QuestionService, ChoiceService) {
+    function ExamineeController($window, ExamineeService, PositionService, ExamService, QuestionService, ChoiceService, ImageQuestionService, ImageChoiceService) {
         var vm = this;
         //variables
         vm.ExamineeId;
@@ -23,9 +23,12 @@
         vm.Initialise = Initialise;
         vm.InitialiseForTakeExam = InitialiseForTakeExam;
         vm.InitialiseForSelectExam = InitialiseForSelectExam;
-        vm.ReadExamForExaminee = ReadExamForExaminee;   
+        vm.ReadExamForExaminee = ReadExamForExaminee;
+        vm.ReadForChoice = ReadForChoice;
+        vm.ReadForChoiceImage = ReadForChoiceImage;
         vm.ReadForPosition = ReadForPosition;
         vm.ReadForQuestion = ReadForQuestion;
+        vm.ReadForQuestionImage = ReadForQuestionImage;
         vm.ReadExamForTakeExam = ReadExamForTakeExam;
         vm.Percentage = Percentage;
         vm.TakenExamsPage = TakenExamsPage;
@@ -105,22 +108,70 @@
                 });
         }
 
+        function ReadForChoice(question) {
+            ChoiceService.ReadForTakeExam(question.QuestionId)
+                .then(function (response) {
+                    question.Choices = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
+        function ReadForChoiceImage(choice) {
+            ImageChoiceService.ReadForTakeExam(choice.ChoiceId)
+                .then(function (response) {
+                    choice.ChoiceImages = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
         function ReadForQuestion() {
             QuestionService.ReadQuestionForTakeExam(vm.ExamId)
                 .then(function (response){
                     vm.Questions = response.data;
                 })
                 .catch(function (data, status) {
-                new PNotify({
-                    title: status,
-                    text: data,
-                    type: 'error',
-                    hide: true,
-                    addclass: "stack-bottomright"
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
                 });
-
-            });
         }
+
+        function ReadForQuestionImage(question) {
+            ImageQuestionService.ReadForTakeExam(question.QuestionId)
+                .then(function (response) {
+                    question.QuestionImages = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+                });
+        }
+
         //end Read
         function Percentage(examinee) {
             ExamineeService.Percentage(examinee.ExamineeId)
