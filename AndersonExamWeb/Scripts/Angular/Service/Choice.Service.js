@@ -11,6 +11,7 @@
         return {
             Create: Create,
             Read: Read,
+            ReadForTakeExam: ReadForTakeExam,
             Update: Update,
             Delete: Delete
         }
@@ -28,6 +29,14 @@
             return $http({
                 method: 'POST',
                 url: '/Choice/Read/' + questionId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadForTakeExam(questionId) {
+            return $http({
+                method: 'POST',
+                url: '/Choice/ReadForTakeExam/' + questionId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

@@ -2,22 +2,25 @@
 using AndersonExamModel;
 using System;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace AndersonExamWeb.Controllers
 {
     public class ExamineeController : Controller
     {
-        int id;
         private IFExaminee _iFExaminee;
-        public ExamineeController(IFExaminee iFExaminee)
+        private IFExam _iFExam;
+        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam)
         {
             _iFExaminee = iFExaminee;
+            _iFExam = iFExam;
         }
 
         #region Create
         [HttpGet]
         public ActionResult Create()
         {
+
             try
             {
                 return View(new Examinee());
@@ -45,12 +48,12 @@ namespace AndersonExamWeb.Controllers
         [HttpPost]
         public ActionResult Create(Examinee examinee)
         {
+            Session["ExamineeId"] = null;
             try
             {
-                //delete
                 examinee = _iFExaminee.Create(examinee);
-                Session[id] = examinee.ExamineeId;
-                return RedirectToAction("SelectExam", new { id =  examinee.ExamineeId});
+                Session["ExamineeId"] = examinee.ExamineeId;
+                return RedirectToAction("SelectExam");
             }
             catch (Exception ex)
             {
@@ -64,6 +67,12 @@ namespace AndersonExamWeb.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult TakeExam(int id)
+        {
+            return View(_iFExam.ReadExamForTakeExam(id));
         }
 
         [HttpPost]

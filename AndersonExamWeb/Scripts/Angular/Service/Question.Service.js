@@ -11,6 +11,7 @@
         return {
             Create: Create,
             Read: Read,
+            ReadQuestionForTakeExam: ReadQuestionForTakeExam,
             Update: Update,
             Delete: Delete
         }
@@ -28,6 +29,14 @@
             return $http({
                 method: 'POST',
                 url: '/Question/Read/' + examId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadQuestionForTakeExam(examId) {
+            return $http({
+                method: 'POST',
+                url: '/Question/ReadQuestionForTakeExam/' + examId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

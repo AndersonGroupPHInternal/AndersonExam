@@ -11,6 +11,7 @@ namespace AndersonExamFunction
 
         #region READ
         List<Choice> Read(int questionId);
+        List<Choice> ReadForTakeExam(int questionId);
         #endregion
 
         #region UPDATE

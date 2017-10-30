@@ -1,0 +1,126 @@
+﻿@using AndersonExamModel;
+@model Exam
+
+
+@{
+    ViewBag.Title = "TakeExam";
+}
+
+<h2>Take Exam</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-sm table-bordered">
+                        <thead>
+                            <tr class="thead-inverse">
+                                <th><h4>Instruction</h4></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span ng-bind="@Model.Instructions"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel-heading">Questions</div>
+                    <table class="table table-hover table-sm table-bordered">
+                        <thead>
+                            <tr class="thead-inverse">
+                                <th class="col-sm-1">Question No.</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="question in model.Questions" ng-init="model.ReadForChoice(question); model.ReadForQuestionImage(question)">
+                            <tr>
+                                <td><span ng-bind="{{$index + 1 }}"></span></td>
+                                <td><span ng-bind="question.Description"></span></td>
+                                <td>
+                                    <div ng-repeat="question in question.QuestionImages">
+                                        <img ng-src="~/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <label>Choices</label>
+                                    <table class="table table-hover table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Description</th>
+                                                <th>Image</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
+                                                <td class="col-sm-1">
+                                                    <form>
+                                                        <input type="radio" name="choice" value="awd">
+                                                    </form>
+                                                </td>
+                                                <td><span ng-bind="choice.Description"></span></td>
+                                                <td>
+                                                    <div ng-repeat="choiceImage in choice.ChoiceImages">
+                                                        <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using AndersonExamModel;
+    @model Exam*@
+
+@*<input type="hidden" name="ExamId" value="@Model.ExamId" />
+
+<div class="form-group">
+    <label for="TimeLimit">TimeLimit(Sec.)</label>
+    <input type="number" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
+</div>
+<div class="form-group">
+    <label for="TimeLimit">Name</label>
+    <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" value="@Model.Name">
+</div>
+<div class="form-group">
+    <label for="Description">Description</label>
+    <textarea type="text" class="form-control" id="Description" name="Description" placeholder="Description" rows="3">@Model.Description</textarea>
+</div>
+<div class="form-group">
+    <label for="Instructions">Instructions</label>
+    <textarea type="text" class="form-control" id="Instructions" name="Instructions" placeholder="Instructions" rows="3">@Model.Instructions</textarea>
+</div>
+<div class="form-group">
+    <label for="Copyright">Copyright</label>
+    <textarea type="text" class="form-control" id="Copyright" name="Copyright" placeholder="Copyright" rows="3">@Model.Copyright</textarea>
+</div>
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</div>*@

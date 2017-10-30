@@ -33,6 +33,12 @@ namespace AndersonExamFunction
             List<EQuestionImage> eQuestions = _iDQuestionImage.List<EQuestionImage>(a => a.QuestionId == questionId);
             return Questions(eQuestions);
         }
+
+        public List<QuestionImage> ReadForTakeExam(int questionId)
+        {
+            List<EQuestionImage> eQuestions = _iDQuestionImage.List<EQuestionImage>(a => a.QuestionId == questionId);
+            return Questions(eQuestions);
+        }
         #endregion
 
         #region UPDATE
