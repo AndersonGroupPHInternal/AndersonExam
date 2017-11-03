@@ -1,5 +1,6 @@
 ﻿using AndersonExamFunction;
 using AndersonExamModel;
+using System;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
@@ -22,9 +23,11 @@ namespace AndersonExamWeb.Controllers
         [HttpPost]
         public ActionResult Create(TakenExam takenExam)
         {
+            takenExam.ExamineeId = Convert.ToInt32(Session["ExamineeId"]);
             takenExam = _iFTakenExam.Create(takenExam);
-            return RedirectToAction("Update", new { id = takenExam.TakenExamId });
+            return RedirectToAction("SelectExam");
         }
+
         #endregion
 
         #region Read

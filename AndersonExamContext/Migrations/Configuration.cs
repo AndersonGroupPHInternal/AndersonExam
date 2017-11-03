@@ -10,7 +10,7 @@ namespace AndersonExamContext.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true; //kapag data loss yung error 
         }
 
         protected override void Seed(AndersonExamContext.Context context)
