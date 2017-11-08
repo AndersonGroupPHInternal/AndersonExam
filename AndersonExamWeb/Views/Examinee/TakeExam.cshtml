@@ -7,22 +7,22 @@
 }
 
 <form action="~/TakenExam/Create" method="post">
-    <input type="hidden" value="@Model.ExamId" />
     <h2>Take Exam</h2>
     <div class="panel panel-default">
         <div class="panel-body">
             <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
+                <input type="hidden" name="ExamId" value="@Model.ExamId" />
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-hover table-sm table-bordered">
                             <thead>
                                 <tr class="thead-inverse">
-                                    <th><h4>Instruction</h4></th>
+                                    <th><h4>Instructions</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><span ng-bind="@Model.Instructions"></span></td>
+                                    <td><span ng-bind="{{@Model.Instructions}}"></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -37,7 +37,10 @@
                             </thead>
                             <tbody ng-repeat="question in model.Questions" ng-init="model.ReadForChoice(question); model.ReadForQuestionImage(question)">
                                 <tr>
-                                    <td><span ng-bind="{{$index + 1 }}"></span></td>
+                                    <td>
+                                        <span ng-bind="{{$index + 1 }}"></span>
+                                        <input type="hidden" name="QuestionId" value="question.QuestionIdx"/>
+                                    </td>
                                     <td><span ng-bind="question.Description"></span></td>
                                     <td>
                                         <div ng-repeat="question in question.QuestionImages">

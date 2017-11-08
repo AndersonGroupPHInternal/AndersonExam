@@ -46,7 +46,7 @@ namespace AndersonExamFunction
         public List<Exam> ReadExamForExaminee(int examineeId)
         {
             List<EExam> eExams = _iDExam.List<EExam>(a => a.ExamPositions.Any(
-                b => b.Position.Examinees.Any(c => c.ExamineeId == examineeId)));
+                b => b.Position.Examinees.Any(c => c.ExamineeId == examineeId && !c.TakenExams.Any(d => d.ExamId == a.ExamId))));
             return Exams(eExams);
         }
 
