@@ -6,7 +6,7 @@ namespace AndersonExamFunction
     public interface IFAnswer
     {
         #region CREATE
-        void Create(List<Answer> answers);
+        void Create(int takenExamId, List<Answer> answers);
         #endregion
 
         #region READ
