@@ -46,6 +46,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AccountsWebAuthentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\Release\Accounts\AccountsWebAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
@@ -554,6 +558,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChoiceImageController.cs" />
     <Compile Include="Controllers\ExamineeController.cs" />
     <Compile Include="Controllers\ChoicesController.cs" />
@@ -709,6 +714,7 @@
     <Content Include="Views\Examinee\SelectExam.cshtml" />
     <Content Include="packages.config" />
     <Content Include="Views\Examinee\TakeExam.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -721,6 +727,7 @@
     <Folder Include="bower_components\pnotify\libtests\requirejs\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ExamPosition\" />
   </ItemGroup>
   <ItemGroup>

@@ -5,8 +5,7 @@ using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-
-    public class ExamController : Controller
+    public class ExamController : BaseController
     {
         private IFExam _iFExam;
         public ExamController(IFExam iFExam)
