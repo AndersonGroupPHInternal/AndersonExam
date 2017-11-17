@@ -13,7 +13,7 @@
         <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForSelectExam(); model.ReadExamForExaminee()">
             <div class="row">
                 <div class="col-sm-12"> 
-                    <table class="table table-hover table-sm table-bordered">
+                    <table class="table table-hover table-sm table-bordered" ng-if="model.Exams.length > 0">
                         <thead>
                             <tr class="thead-inverse">
                                 <th>Name</th>
@@ -37,6 +37,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div ng-if="model.Exams.length == 0">
+                        <h1> Thank You for Answering!</h1>
+                    </div>
                 </div>
             </div>
         </div>

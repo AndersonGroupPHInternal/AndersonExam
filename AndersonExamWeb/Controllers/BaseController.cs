@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    [CustomAuthorize(AllowedRoles = new string[] { "AndersonExam" })]
+    //[CustomAuthorize(AllowedRoles = new string[] { "AndersonExam" })]
     public class BaseController : Controller
     {
     }
