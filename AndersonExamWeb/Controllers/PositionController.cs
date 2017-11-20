@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class PositionController : Controller
+    public class PositionController : BaseController
     {
         private IFExamPosition _iFExamPosition;
         private IFPosition _iFPosition;
