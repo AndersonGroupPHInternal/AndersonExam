@@ -14,15 +14,14 @@
                         <th>Score</th>
                         <th>TakenExamId</th>
                         <th>Total</th>
-                        <th>TimeLimit</th>
+                        <th>TimeLimit(sec.)</th>
                         <th>Name</th>
                         <th>Description</th>
-                      
                     </tr>
                 </thead>
                 <tbody ng-repeat="takenExam in model.TakenExams">
                     <tr class="clickableRow">
-                        <td><span ng-bind="takenExam.Percentage"></span></td>
+                        <td><span ng-bind="takenExam.Percentage"></span>%</td>
                         <td><span ng-bind="takenExam.ExamId"></span></td>
                         <td><span ng-bind="takenExam.ExamineeId"></span></td>
                         <td><span ng-bind="takenExam.Score"></span></td>
@@ -39,7 +38,6 @@
                                     <tr class="thead-inverse">
                                         <th>AnswerId</th>
                                         <th>ChoiceId</th>
-                                        <th>QuestionId</th>
                                         <th>Correct</th>
                                         <th>Answer</th>
                                         <th>Question</th>
@@ -49,7 +47,6 @@
                                     <tr class="clickableRow">
                                         <td><span ng-bind="answer.AnswerId"></span></td>
                                         <td><span ng-bind="answer.ChoiceId"></span></td>
-                                        <td><span ng-bind="answer.QuestionId"></span></td>
                                         <td><span ng-bind="answer.Choice.Correct"></span></td>
                                         <td><span ng-bind="answer.Choice.Description"></span></td>
                                         <td><span ng-bind="answer.Choice.Question.Description"></span></td>

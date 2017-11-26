@@ -19,6 +19,7 @@ namespace AndersonExamFunction
         #endregion
 
         #region DELETE
+        void Delete(int examineeId);
         #endregion
 
         #region OTHER FUNCTION

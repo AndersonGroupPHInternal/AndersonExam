@@ -40,7 +40,7 @@ namespace AndersonExamWeb.Controllers
                 fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
                 var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
                 file.SaveAs(path);
-                questionImage.Url = path;
+                questionImage.Url = fileName;
             }
             _iFQuestionImage.Create(questionImage);
             return Json(string.Empty);
@@ -52,6 +52,11 @@ namespace AndersonExamWeb.Controllers
         public JsonResult Read(int id)
         {
             return Json(_iFQuestionImage.Read(id));
+        }
+
+        public JsonResult ReadForTakeExam(int id)
+        {
+            return Json(_iFQuestionImage.ReadForTakeExam(id));
         }
         #endregion
 

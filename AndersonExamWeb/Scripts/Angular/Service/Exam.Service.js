@@ -10,7 +10,9 @@
     function ExamService($http) {
         return {
             Read: Read,
+            ReadExamForExaminee: ReadExamForExaminee,
             ReadExamForPosition: ReadExamForPosition,
+            ReadExamForTakeExam: ReadExamForTakeExam,
             Delete: Delete
         }
 
@@ -22,10 +24,26 @@
             });
         }
 
+        function ReadExamForExaminee() {
+            return $http({
+                method: 'POST',
+                url: '/Exam/ReadExamForExaminee/',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
         function ReadExamForPosition(positionId) {
             return $http({
                 method: 'POST',
                 url: '/Exam/ReadExamForPosition/' + positionId,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        }
+
+        function ReadExamForTakeExam(examId) {
+            return $http({
+                method: 'POST',
+                url: '/Exam/ReadExamForTakeExam/' + examId,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }

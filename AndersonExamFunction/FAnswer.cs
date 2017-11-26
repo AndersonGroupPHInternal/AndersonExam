@@ -8,18 +8,22 @@ namespace AndersonExamFunction
 {
     public class FAnswer : IFAnswer
     {
-        private IDExamPosition _iDAnswer;
+        private IDAnswer _iDAnswer;
 
-        public FAnswer(IDExamPosition iDAnswer)
+        public FAnswer(IDAnswer iDAnswer)
         {
             _iDAnswer = iDAnswer;
         }
 
         #region CREATE
-        public void Create(List<Answer> answers)
+        public void Create(int takenExamId, List<Answer> answers)
         {
             List<EAnswer> eAnswers = EAnswers(answers);
-            _iDAnswer.Create(eAnswers);
+            foreach (EAnswer eAnswer in eAnswers)
+            {
+                eAnswer.TakenExamId = takenExamId;
+                _iDAnswer.Create(eAnswer);
+            }
         }
         #endregion
 
@@ -46,10 +50,8 @@ namespace AndersonExamFunction
             {
                 AnswerId = a.AnswerId,
                 ChoiceId = a.ChoiceId,
-                TakenExamId = a.TakenExamId,
-                QuestionId = a.QuestionId
+                TakenExamId = a.TakenExamId
             });
-
             return returnAnswers.ToList();
         }
 
@@ -59,8 +61,7 @@ namespace AndersonExamFunction
             {
                 AnswerId = a.AnswerId,
                 ChoiceId = a.ChoiceId,
-                TakenExamId = a.TakenExamId,
-                QuestionId = a.QuestionId,
+                TakenExamId = a.TakenExamId
             }).ToList();
             return returnEAnswers;
         }

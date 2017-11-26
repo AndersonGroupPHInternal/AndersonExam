@@ -14,7 +14,6 @@ namespace AndersonExamModel
         public string Middlename { get; set; }
 
         public virtual Position Position { get; set; }
-
         public virtual ICollection<TakenExam> TakenExams { get; set; }
     }
 }

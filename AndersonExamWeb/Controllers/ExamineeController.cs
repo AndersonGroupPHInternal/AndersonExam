@@ -2,21 +2,25 @@
 using AndersonExamModel;
 using System;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace AndersonExamWeb.Controllers
 {
     public class ExamineeController : Controller
     {
         private IFExaminee _iFExaminee;
-        public ExamineeController(IFExaminee iFExaminee)
+        private IFExam _iFExam;
+        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam)
         {
             _iFExaminee = iFExaminee;
+            _iFExam = iFExam;
         }
 
         #region Create
         [HttpGet]
         public ActionResult Create()
         {
+
             try
             {
                 return View(new Examinee());
@@ -28,18 +32,32 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult Create(Examinee examinee)
+        [HttpGet]
+        public ActionResult SelectExam()
         {
             try
             {
-                examinee = _iFExaminee.Create(examinee);
-                return View(examinee);
+                return View(new Examinee());
             }
             catch (Exception ex)
             {
                 return Json(ex);
+            }
+        }
 
+        [HttpPost]
+        public ActionResult Create(Examinee examinee)
+        {
+            Session["ExamineeId"] = null;
+            try
+            {
+                examinee = _iFExaminee.Create(examinee);
+                Session["ExamineeId"] = examinee.ExamineeId;
+                return RedirectToAction("SelectExam");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
             }
         }
         #endregion
@@ -49,6 +67,12 @@ namespace AndersonExamWeb.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult TakeExam(int id)
+        {
+            return View(_iFExam.ReadExamForTakeExam(id));
         }
 
         [HttpPost]
@@ -79,6 +103,12 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Delete
+        [HttpDelete]
+        public JsonResult Delete(int id)
+        {
+            _iFExaminee.Delete(id);
+            return Json(string.Empty);
+        }
         #endregion
 
     }

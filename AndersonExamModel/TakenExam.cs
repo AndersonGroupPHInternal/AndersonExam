@@ -28,7 +28,7 @@ namespace AndersonExamModel
             {
                 if (Answers?.Any() ?? false)
                 {
-                    return Answers.Count(a => a.Choice.Correct);
+                    return Answers.Count(a => a.Choice?.Correct ?? false);
                 }
                 else
                 {

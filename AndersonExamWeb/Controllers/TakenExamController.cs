@@ -1,5 +1,7 @@
 ﻿using AndersonExamFunction;
 using AndersonExamModel;
+using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
@@ -7,24 +9,31 @@ namespace AndersonExamWeb.Controllers
     public class TakenExamController : Controller
     {
         private IFTakenExam _iFTakenExam;
-        public TakenExamController(IFTakenExam iFTakenExam)
+        private IFAnswer _iFAnswer;
+        public TakenExamController(IFTakenExam iFTakenExam, IFAnswer iFAnswer)
         {
             _iFTakenExam = iFTakenExam;
+            _iFAnswer = iFAnswer;
         }
 
         #region Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            return View(new TakenExam());
+            var takenExam = new TakenExam
+            {ExamId = id};
+            return View(takenExam);
         }
 
         [HttpPost]
         public ActionResult Create(TakenExam takenExam)
         {
-            takenExam = _iFTakenExam.Create(takenExam);
-            return RedirectToAction("Update", new { id = takenExam.TakenExamId });
+            takenExam.ExamineeId = Convert.ToInt32(Session["ExamineeId"]);
+            var takenExamCreated = _iFTakenExam.Create(takenExam);
+            _iFAnswer.Create(takenExamCreated.TakenExamId, takenExam.Answers.ToList());
+            return RedirectToAction("SelectExam", "Examinee");
         }
+
         #endregion
 
         #region Read

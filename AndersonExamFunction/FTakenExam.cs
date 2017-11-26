@@ -72,7 +72,6 @@ namespace AndersonExamFunction
                 {
                     AnswerId = b.AnswerId,
                     ChoiceId = b.ChoiceId,
-                    QuestionId = b.QuestionId,
                     TakenExamId = b.TakenExamId,
 
                     Choice = new Choice
@@ -112,7 +111,7 @@ namespace AndersonExamFunction
                 ExamineeId = eTakenExam.ExamineeId,
                 TakenExamId = eTakenExam.TakenExamId,
 
-                Exam = new Exam
+                Exam = (eTakenExam.Exam == null) ? null : new Exam
                 {
                     TimeLimit = eTakenExam.Exam.TimeLimit,
 
@@ -122,12 +121,11 @@ namespace AndersonExamFunction
                     Copyright = eTakenExam.Exam.Copyright,
                 },
 
-                Answers = eTakenExam.Answers.Select(a =>
+                Answers = eTakenExam.Answers?.Select(a =>
                 new Answer
                 {
                     AnswerId = a.AnswerId,
                     ChoiceId = a.ChoiceId,
-                    QuestionId = a.QuestionId,
                     TakenExamId = a.TakenExamId,
 
                     Choice = new Choice
@@ -142,7 +140,7 @@ namespace AndersonExamFunction
                             Description = a.Choice.Question.Description,
                         }
                     }
-                }).ToList()
+                }).ToList() ?? null
             };
             return returnTakenExam;
         }

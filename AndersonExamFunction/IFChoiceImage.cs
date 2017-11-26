@@ -11,6 +11,7 @@ namespace AndersonExamFunction
 
         #region READ
         List<ChoiceImage> Read(int choiceId);
+        List<ChoiceImage> ReadForTakeExam(int choiceId);
         #endregion
 
         #region UPDATE

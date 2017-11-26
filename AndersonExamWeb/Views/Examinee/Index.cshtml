@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -28,7 +27,7 @@
                         <td><span ng-bind="examinee.Lastname"></span></td>
                         <td><span ng-bind="examinee.Firstname"></span></td>
                         <td><span ng-bind="examinee.Middlename"></span></td>
-                        <td ng-init="model.Percentage(examinee)"><span ng-bind="examinee.Percentage"></span></td>
+                        <td ng-init="model.Percentage(examinee)"><span ng-bind="examinee.Percentage"></span>%</td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -36,7 +35,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#" ng-click="model.TakenExamsPage(examinee.ExamineeId)">Edit</a></li>
-                                    <li><a href="#" ng-click="model.GoToUpdatePage(examinee.ExamineeId)">Delete</a></li>
+                                    <li><a href="#" ng-click="model.Delete(examinee.ExamineeId)">Delete</a></li>
                                 </ul>
                             </div>
                         </td>

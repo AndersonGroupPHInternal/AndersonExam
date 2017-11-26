@@ -1,11 +1,11 @@
 ﻿using AndersonExamFunction;
 using AndersonExamModel;
+using System;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-
-    public class ExamController : Controller
+    public class ExamController : BaseController
     {
         private IFExam _iFExam;
         public ExamController(IFExam iFExam)
@@ -42,9 +42,22 @@ namespace AndersonExamWeb.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReadExamForExaminee()
+        {
+            int examineeId = Convert.ToInt32(Session["ExamineeId"]);
+            return Json(_iFExam.ReadExamForExaminee(examineeId));
+        }
+
+        [HttpPost]
         public JsonResult ReadExamForPosition(int id)
         {
             return Json(_iFExam.ReadExamForPosition(id));
+        }
+
+        [HttpPost]
+        public JsonResult ReadExamForTakeExam(int id)
+        {
+            return Json(_iFExam.ReadExamForTakeExam(id));
         }
         #endregion
 
