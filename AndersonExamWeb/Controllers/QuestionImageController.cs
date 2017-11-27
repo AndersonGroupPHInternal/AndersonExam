@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using System.Web;
 using System.IO;
 using System.Linq;
+using AccountsWebAuthentication.Helper;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class QuestionImageController : Controller
+    public class QuestionImageController : BaseController
     {
         public ActionResult Exam()
         {
@@ -54,6 +55,8 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFQuestionImage.Read(id));
         }
 
+        //check if this is a redundant function
+        [CustomAuthorize(AllowedRoles = new string[0])]
         public JsonResult ReadForTakeExam(int id)
         {
             return Json(_iFQuestionImage.ReadForTakeExam(id));
