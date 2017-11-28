@@ -1,4 +1,5 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System.Linq;
 using System.Web.Mvc;
@@ -38,6 +39,7 @@ namespace AndersonExamWeb.Controllers
             return View();
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult Read()
         {

@@ -1,4 +1,5 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System;
 using System.Web.Mvc;
@@ -41,6 +42,7 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFExam.Read());
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult ReadExamForExaminee()
         {
@@ -53,7 +55,7 @@ namespace AndersonExamWeb.Controllers
         {
             return Json(_iFExam.ReadExamForPosition(id));
         }
-
+        //Check if this is redundant business logic ang function with public ActionResult Update(int id)
         [HttpPost]
         public JsonResult ReadExamForTakeExam(int id)
         {

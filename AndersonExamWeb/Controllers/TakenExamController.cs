@@ -1,4 +1,5 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System;
 using System.Linq;
@@ -6,7 +7,8 @@ using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class TakenExamController : Controller
+    [CustomAuthorize(AllowedRoles = new string[0])]
+    public class TakenExamController : BaseController
     {
         private IFTakenExam _iFTakenExam;
         private IFAnswer _iFAnswer;

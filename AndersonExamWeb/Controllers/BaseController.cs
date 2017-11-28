@@ -1,10 +1,11 @@
-﻿using AccountsWebAuthentication.Helper;
+﻿using AccountsWebAuthentication.Controllers;
+using AccountsWebAuthentication.Helper;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    [CustomAuthorize(AllowedRoles = new string[] { "ExamDeveloper" })]
-    public class BaseController : Controller
+    [CustomAuthorize(AllowedRoles = new string[] { "ExamManager" })]
+    public class BaseController : BaseAccountsController
     {
     }
 }   

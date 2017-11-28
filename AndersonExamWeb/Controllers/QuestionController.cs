@@ -1,10 +1,11 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class QuestionController : Controller
+    public class QuestionController : BaseController
     {
         private IFQuestion _iFQuestion;
         public QuestionController(IFQuestion iFQuestion)
@@ -26,7 +27,8 @@ namespace AndersonExamWeb.Controllers
         {
             return Json(_iFQuestion.Read(id));
         }
-
+        //check if this is a redundant function
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult ReadQuestionForTakeExam(int id)
         {
