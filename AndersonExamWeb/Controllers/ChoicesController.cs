@@ -10,6 +10,7 @@ namespace AndersonExamWeb.Controllers
         private IFChoice _iFChoice; 
         public ChoiceController(IFChoice iFChoice)
         {
+
             _iFChoice = iFChoice;
 
         }
