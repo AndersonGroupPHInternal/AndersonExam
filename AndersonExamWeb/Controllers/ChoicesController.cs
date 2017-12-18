@@ -1,15 +1,18 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class ChoiceController : Controller
+    public class ChoiceController : BaseController
     {
-        private IFChoice _iFChoice;
+        private IFChoice _iFChoice; 
         public ChoiceController(IFChoice iFChoice)
         {
+
             _iFChoice = iFChoice;
+       
         }
 
         #region Create
@@ -22,6 +25,7 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Read
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult Read(int id)
         {

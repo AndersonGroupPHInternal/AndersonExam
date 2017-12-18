@@ -1,4 +1,5 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class ChoiceImageController : Controller
+    public class ChoiceImageController : BaseController
     {
         private IFChoiceImage _iFChoiceImage;
         public ChoiceImageController(IFChoiceImage iFChoiceImage)
@@ -25,20 +26,23 @@ namespace AndersonExamWeb.Controllers
             return Json(string.Empty);
         }
         #endregion
+
         [HttpPost]
         public ActionResult ChoiceAddImage(ChoiceImage choiceImage, int choiceId, HttpPostedFileBase file)
         {
             if (file.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
+                int id = choiceId;
+                var fileName = id + Path.GetExtension(file.FileName);
                 fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
-                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/")+ fileName);
                 file.SaveAs(path);
                 choiceImage.Url = fileName;
             }
             _iFChoiceImage.Create(choiceImage);
             return Json(string.Empty);
         }
+
         #region Read
         [HttpPost]
         public JsonResult Read(int id)
@@ -46,6 +50,7 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFChoiceImage.Read(id));
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         public JsonResult ReadForTakeExam(int id)
         {
             return Json(_iFChoiceImage.ReadForTakeExam(id));
@@ -53,11 +58,6 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Update
-        //[HttpPost]
-        //public JsonResult Update(ChoiceImage choiceImage)
-        //{
-        //    return Json(_iFChoiceImage.Update(choiceImage));
-        //}
         #endregion
 
         #region Delete

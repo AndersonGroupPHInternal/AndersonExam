@@ -1,4 +1,5 @@
-﻿using AndersonExamFunction;
+﻿using AccountsWebAuthentication.Helper;
+using AndersonExamFunction;
 using AndersonExamModel;
 using System;
 using System.Web.Mvc;
@@ -6,7 +7,7 @@ using System.Web.SessionState;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class ExamineeController : Controller
+    public class ExamineeController : BaseController
     {
         private IFExaminee _iFExaminee;
         private IFExam _iFExam;
@@ -17,6 +18,7 @@ namespace AndersonExamWeb.Controllers
         }
 
         #region Create
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult Create()
         {
@@ -32,6 +34,7 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult SelectExam()
         {
@@ -45,6 +48,7 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public ActionResult Create(Examinee examinee)
         {
@@ -69,6 +73,7 @@ namespace AndersonExamWeb.Controllers
             return View();
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult TakeExam(int id)
         {

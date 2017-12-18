@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using AndersonExamFunction;
 using AndersonExamModel;
@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using System.Web;
 using System.IO;
 using System.Linq;
+using AccountsWebAuthentication.Helper;
 
 namespace AndersonExamWeb.Controllers
 {
-    public class QuestionImageController : Controller
+    public class QuestionImageController : BaseController
     {
         public ActionResult Exam()
         {
@@ -36,12 +37,17 @@ namespace AndersonExamWeb.Controllers
         {
             if (file.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
+
+                int id = questionId;
+                var fileName = id + Path.GetExtension(file.FileName);
                 fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
-                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/") + fileName);
                 file.SaveAs(path);
                 questionImage.Url = fileName;
             }
+
+
+
             _iFQuestionImage.Create(questionImage);
             return Json(string.Empty);
         }
@@ -54,6 +60,8 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFQuestionImage.Read(id));
         }
 
+        //check if this is a redundant function
+        [CustomAuthorize(AllowedRoles = new string[0])]
         public JsonResult ReadForTakeExam(int id)
         {
             return Json(_iFQuestionImage.ReadForTakeExam(id));
