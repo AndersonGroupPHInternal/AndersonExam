@@ -44,7 +44,7 @@
                                     <td><span ng-bind="question.Description"></span></td>
                                     <td>
                                         <div ng-repeat="question in question.QuestionImages">
-                                            <img ng-src="~/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
+                                            <img ng-src="~/Content/Images/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
                                         </div>
                                     </td>
                                 </tr>
@@ -67,7 +67,7 @@
                                                     <td><span ng-bind="choice.Description"></span></td>
                                                     <td>
                                                         <div ng-repeat="choiceImage in choice.ChoiceImages">
-                                                            <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                            <img ng-src="~/Content/Images/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
                                                         </div>
                                                     </td>
                                                 </tr>

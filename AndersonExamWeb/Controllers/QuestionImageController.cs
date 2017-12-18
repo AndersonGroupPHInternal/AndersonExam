@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using AndersonExamFunction;
 using AndersonExamModel;
@@ -37,12 +37,17 @@ namespace AndersonExamWeb.Controllers
         {
             if (file.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(file.FileName);
+
+                int id = questionId;
+                var fileName = id + Path.GetExtension(file.FileName);
                 fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
-                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Images/") + fileName);
                 file.SaveAs(path);
                 questionImage.Url = fileName;
             }
+
+
+
             _iFQuestionImage.Create(questionImage);
             return Json(string.Empty);
         }
