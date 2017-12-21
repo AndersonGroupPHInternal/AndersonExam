@@ -6,82 +6,99 @@
     ViewBag.Title = "TakeExam";
 }
 
+
+
+<script src="localhost:54543/Scripts/Angular/Controller/CountDownController.js"> </script>
+
 <form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
+
+
+    
+
+   
+     <center> <span id="theTime" class="timeClass"></span></center>
+
+    @*<input type="hidden" id="TimeLimit" name="TimeLimit"  value="@Model.TimeLimit"/>*@
+         
+    @*<div>Exam over in <span id="time"></span> minutes!</div>*@
+
+ 
+
     <div class="panel panel-default">
-        <div class="panel-body">
-            <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
-                <input type="hidden" name="ExamId" value="@Model.ExamId" />
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table table-hover table-sm table-bordered">
-                            <thead>
-                                <tr class="thead-inverse">
-                                    <th><h4>Instruction</h4></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span>@Model.Instructions</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="panel-heading">Questions</div>
-                        <table class="table table-hover table-sm table-bordered">
-                            <thead>
-                                <tr class="thead-inverse">
-                                    <th class="col-sm-1">Question No.</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
-                                </tr>
-                            </thead>
-                            <tbody ng-repeat="question in model.Questions" ng-init="model.ReadForChoice(question); model.ReadForQuestionImage(question)">
-                                <tr>
-                                    <td>
-                                        <span ng-bind="{{$index + 1 }}"></span>
-                                        <input type="hidden" name="QuestionId" value="question.QuestionIdx"/>
-                                    </td>
-                                    <td><span ng-bind="question.Description"></span></td>
-                                    <td>
-                                        <div ng-repeat="question in question.QuestionImages">
-                                            <img ng-src="~/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <label>Choices</label>
-                                        <table class="table table-hover table-sm table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Action</th>
-                                                    <th>Description</th>
-                                                    <th>Image</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
-                                                    <td class="col-sm-1">
-                                                        <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}">
-                                                    </td>
-                                                    <td><span ng-bind="choice.Description"></span></td>
-                                                    <td>
-                                                        <div ng-repeat="choiceImage in choice.ChoiceImages">
-                                                            <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <div class="panel-body">
+                <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
+                    <input type="hidden" name="ExamId" value="@Model.ExamId" />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-hover table-sm table-bordered">
+                                <thead>
+                                    <tr class="thead-inverse">
+                                        <th><h4>Instruction</h4></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>@Model.Instructions</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="panel-heading">Questions</div>
+                            <table class="table table-hover table-sm table-bordered">
+                                <thead>
+                                    <tr class="thead-inverse">
+                                        <th class="col-sm-1">Question No.</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="question in model.Questions" ng-init="model.ReadForChoice(question); model.ReadForQuestionImage(question)">
+                                    <tr>
+                                        <td>
+                                            <span ng-bind="{{$index + 1 }}"></span>
+                                            <input type="hidden" name="QuestionId" value="question.QuestionIdx" />
+                                        </td>
+                                        <td><span ng-bind="question.Description"></span></td>
+                                        <td>
+                                            <div ng-repeat="question in question.QuestionImages">
+                                                <img ng-src="~/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <label>Choices</label>
+                                            <table class="table table-hover table-sm table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Description</th>
+                                                        <th>Image</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
+                                                        <td class="col-sm-1">
+                                                            <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}">
+                                                        </td>
+                                                        <td><span ng-bind="choice.Description"></span></td>
+                                                        <td>
+                                                            <div ng-repeat="choiceImage in choice.ChoiceImages">
+                                                                <img ng-src="~/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <label>(Check your answers before submitting)</label><br />
-    <input type="submit" class="btn btn-success" value="submit" />
+        <label>(Check your answers before submitting)</label><br />
+        <input type="submit" class="btn btn-success" value="submit" id="Submit"/>
 </form>
