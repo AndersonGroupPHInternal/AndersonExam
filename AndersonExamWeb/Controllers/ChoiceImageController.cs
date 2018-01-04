@@ -32,7 +32,7 @@ namespace AndersonExamWeb.Controllers
         {
             if (file.ContentLength > 0)
             {
-                int id = choiceId;
+                int id = choiceImage.ChoiceId;
                 var fileName = id + Path.GetExtension(file.FileName);
                 fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
                 var path = Path.Combine(Server.MapPath("~/Content/Images/")+ fileName);

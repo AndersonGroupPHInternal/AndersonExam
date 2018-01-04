@@ -41,9 +41,12 @@
                                 </td>
                                 <td>
                                     @*IMAGES*@
+                                    
                                     <div ng-repeat="question in question.QuestionImages">
                                         <img ng-src="~/Content/Images/{{question.Url}}" alt="None"  style="height:150px;width:150px;"/>
-                                    </div>
+                                     </div>
+
+
                                 </td>
                                 <td ng-click="$event.originalEvent.dropdown = true">
                                     <div class="dropdown">
@@ -91,9 +94,11 @@
                                                 </td>
                                                 <td>
                                                     @*PICTURE*@
+                                                    
                                                     <div ng-repeat="choiceImage in choice.ChoiceImages">
                                                         <img ng-src="~/Content/Images/{{choiceImage.Url}}" alt="None" style="height:150px;width:150px;" />
                                                     </div>
+
                                                 </td>
                                                 <td ng-click="$event.originalEvent.dropdown = true">
                                                     <div class="dropdown">
