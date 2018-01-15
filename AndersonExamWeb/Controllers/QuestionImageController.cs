@@ -63,6 +63,8 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
+
+
         #region QuestionAddImage
         [HttpPost]
         public ActionResult QuestionAddImage(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
@@ -79,7 +81,7 @@ namespace AndersonExamWeb.Controllers
 
             
             _iFQuestionImage.Create(questionImage);
-            return Json(string.Empty);
+            return Json(string.Empty); 
         }
         #endregion
     }

@@ -29,8 +29,6 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
-
-
         #region Read
         [HttpGet]
         public ActionResult Index()
