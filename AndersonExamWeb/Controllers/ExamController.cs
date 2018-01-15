@@ -62,7 +62,7 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFExam.ReadExamForTakeExam(id));
         }
         #endregion
-
+  
         #region Update
         [HttpGet]
         public ActionResult Update(int id)
@@ -91,7 +91,8 @@ namespace AndersonExamWeb.Controllers
             //    return Json(ex);
             //}
         }
-        #endregion
+        #endregion 
+
 
     }
 }

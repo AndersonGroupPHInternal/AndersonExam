@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using AndersonExamFunction;
 using AndersonExamModel;
@@ -31,23 +31,6 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion 
 
-        #region QuestionAddImage
-        [HttpPost]
-        public ActionResult QuestionAddImage(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
-        {
-            if (file.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(file.FileName);
-                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
-                var path = Path.Combine(Server.MapPath("~/Content/Images"), fileName);
-                file.SaveAs(path);
-                questionImage.Url = fileName;
-            }
-            _iFQuestionImage.Create(questionImage);
-            return Json(string.Empty);
-        }
-        #endregion
-
         #region Read
         [HttpPost]
         public JsonResult Read(int id)
@@ -63,7 +46,6 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
-
         #region Update
         //[HttpPost]
         //public JsonResult Update(QuestionImage questionImage)
@@ -78,6 +60,28 @@ namespace AndersonExamWeb.Controllers
         {
             _iFQuestionImage.Delete(questionImage);
             return Json(string.Empty);
+        }
+        #endregion
+
+
+
+        #region QuestionAddImage
+        [HttpPost]
+        public ActionResult QuestionAddImage(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
+        {
+            if (file.ContentLength > 0)
+            {
+                int id = questionImage.QuestionId;
+                var fileName = id + Path.GetExtension(file.FileName);
+                fileName = fileName.Split('\\').Last(); //This will fix problems when uploading using IE
+                var path = Path.Combine(Server.MapPath("~/Content/Images/") + fileName);
+                file.SaveAs(path);
+                questionImage.Url = fileName;
+            }
+
+            
+            _iFQuestionImage.Create(questionImage);
+            return Json(string.Empty); 
         }
         #endregion
     }

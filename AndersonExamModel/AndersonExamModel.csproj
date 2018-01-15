@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamSet.cs" />
     <Compile Include="TakenExam.cs" />
     <Compile Include="ExamPosition.cs" />
     <Compile Include="QuestionImage.cs" />
