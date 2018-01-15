@@ -1,4 +1,4 @@
-﻿@using AndersonExamModel;
+@using AndersonExamModel;
 @model Exam
 
 
@@ -8,6 +8,7 @@
 
 <form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
+
 
     <input type="hidden" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
     <center><bold><span id="theTime" class="timeClass"></span></bold></center>
@@ -84,6 +85,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>

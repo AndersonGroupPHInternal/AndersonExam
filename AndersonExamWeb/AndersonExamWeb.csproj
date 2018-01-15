@@ -731,6 +731,7 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ExamPosition\" />
+
     <Folder Include="Views\ExamTimer\" />
   </ItemGroup>
   <ItemGroup>
