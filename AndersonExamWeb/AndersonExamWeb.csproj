@@ -564,7 +564,7 @@
     <Compile Include="Controllers\ExamineeController.cs" />
     <Compile Include="Controllers\ChoicesController.cs" />
     <Compile Include="Controllers\ExamPositionController.cs" />
-    <Compile Include="Controllers\ExamTimerController.cs" />
+    <Compile Include="Controllers\ExamSetController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\QuestionImageController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />

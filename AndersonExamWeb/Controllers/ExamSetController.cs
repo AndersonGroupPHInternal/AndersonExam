@@ -62,8 +62,8 @@ namespace AndersonExamWeb.Controllers
         {
             //try
             //{
-                _iFExamSet.Delete(examSet);
-                return Json(string.Empty);
+            _iFExamSet.Delete(examSet);
+            return Json(string.Empty);
             //}
             //catch (System.Exception ex)
             //{
@@ -72,6 +72,6 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
-    
+
     }
 }
