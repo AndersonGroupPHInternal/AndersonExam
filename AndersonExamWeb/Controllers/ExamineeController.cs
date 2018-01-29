@@ -42,7 +42,7 @@ namespace AndersonExamWeb.Controllers
                 examinee = _iFExaminee.Create(examinee);
                 Session["ExamineeId"] = null;
                 Session["ExamineeId"] = examinee.ExamineeId;
-                return RedirectToAction("SelectExam",JsonRequestBehavior.AllowGet); 
+                return RedirectToAction("SelectExam",JsonRequestBehavior.AllowGet);
             }
 
             catch (Exception ex)
@@ -105,22 +105,6 @@ namespace AndersonExamWeb.Controllers
         {
             var promoId = Convert.ToInt32(Request.Form["ddlPromotion"]);
             return RedirectToAction("GetPromo", new { id = promoId });
-        }
-
-        public ActionResult Position(int positionId)
-        {
-
-            if (positionId > 0)
-            {
-                var model =(positionId);
-
-                if (positionId != _iFPosition)
-                {
-                    return View("Create");
-                }
-            }
-
-            return RedirectToAction("Create");
         }
         #endregion
 
