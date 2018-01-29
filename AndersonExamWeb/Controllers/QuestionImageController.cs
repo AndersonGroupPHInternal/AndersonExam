@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using AndersonExamFunction;
 using AndersonExamModel;
@@ -38,7 +38,7 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFQuestionImage.Read(id));
         }
 
-        //check if this is a redundant function
+        //check if this is a redundant function (This is not)
         [CustomAuthorize(AllowedRoles = new string[0])]
         public JsonResult ReadForTakeExam(int id)
         {
@@ -62,9 +62,7 @@ namespace AndersonExamWeb.Controllers
             return Json(string.Empty);
         }
         #endregion
-
-
-
+        
         #region QuestionAddImage
         [HttpPost]
         public ActionResult QuestionAddImage(QuestionImage questionImage, int questionId, HttpPostedFileBase file)
