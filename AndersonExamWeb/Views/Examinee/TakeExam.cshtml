@@ -1,13 +1,11 @@
-﻿@using AndersonExamModel;
+﻿    @using AndersonExamModel;
 @model Exam
-
-
 @{
     ViewBag.Title = "TakeExam";
 }
-
-<form action="~/TakenExam/Create" method="post">
+<form action="~/TakenExam/Create" method="post" id="send">
     <h2>Take Exam</h2>
+    <p id="timer"> </p>
     <div class="panel panel-default">
         <div class="panel-body">
             <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
@@ -39,7 +37,7 @@
                                 <tr>
                                     <td>
                                         <span ng-bind="{{$index + 1 }}"></span>
-                                        <input type="hidden" name="QuestionId" value="question.QuestionIdx"/>
+                                        <input type="hidden" name="QuestionId" value="question.QuestionId"/>
                                     </td>
                                     <td><span ng-bind="question.Description"></span></td>
                                     <td>
@@ -62,7 +60,7 @@
                                             <tbody>
                                                 <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
                                                     <td class="col-sm-1">
-                                                        <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}">
+                                                        <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}" id="radioAnswers">     
                                                     </td>
                                                     <td><span ng-bind="choice.Description"></span></td>
                                                     <td>
@@ -85,3 +83,23 @@
     <label>(Check your answers before submitting)</label><br />
     <input type="submit" class="btn btn-success" value="submit" />
 </form>
+<!--TIMER CODES -->
+<script>
+var newTime = new Date();
+newTime.setTime(newTime.getTime() + (@Model.TimeLimit*1000));
+var x = setInterval(function() {
+var now = new Date().getTime();
+var distance = newTime-now;
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById("timer").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
+  if (distance < 0) {
+    clearInterval(x);
+    alert("Times Up!");
+    document.getElementById("timer").innerHTML = "Exam Time Finished";
+    document.getElementById("send").submit();
+
+  }
+}, 1000);
+</script>

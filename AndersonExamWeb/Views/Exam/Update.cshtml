@@ -37,7 +37,7 @@
                                 <td><span ng-bind="question.QuestionId"></span></td>
                                 <td>
                                     <span ng-bind="question.Description" ng-show="question.UpdateMode != true"></span>
-                                    <textarea type="text" class="form-control" rows="3" ng-model="question.NewDescription" ng-show="question.UpdateMode == true"></textarea>
+                                    <textarea type="text" class="form-control" rows="3" ng-model="question.NewDescription" ng-show="question.UpdateMode == true" required></textarea>
                                 </td>
                                 <td>
                                     @*IMAGES*@
