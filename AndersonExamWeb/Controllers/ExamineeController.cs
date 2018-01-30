@@ -11,13 +11,47 @@ namespace AndersonExamWeb.Controllers
     {
         private IFExaminee _iFExaminee;
         private IFExam _iFExam;
-        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam)
+        private IFPosition _iFPosition;
+        public ExamineeController (IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
         {
             _iFExaminee = iFExaminee;
             _iFExam = iFExam;
+            _iFPosition = iFPosition;
+
         }
 
         #region Create
+        [CustomAuthorize(AllowedRoles = new string[0])]
+        [HttpGet]
+        public ActionResult AutoCreate(string positionName, string firstName, string middleName, string lastName, string referencecode)
+        {
+
+            try
+            {
+                var position = _iFPosition.Read(positionName);
+                var examinee = new Examinee
+                
+                {
+                    PositionId = position.PositionId,
+                    ReferenceCode = referencecode,
+                    Lastname = lastName,
+                    Firstname = firstName,
+                    Middlename = middleName,
+
+                };
+                examinee = _iFExaminee.Create(examinee);
+                Session["ExamineeId"] = null;
+                Session["ExamineeId"] = examinee.ExamineeId;
+                return RedirectToAction("SelectExam",JsonRequestBehavior.AllowGet);
+            }
+
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }           
+        }
+             
+        
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult Create()
@@ -48,6 +82,7 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
+        
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public ActionResult Create(Examinee examinee)
@@ -63,6 +98,13 @@ namespace AndersonExamWeb.Controllers
             {
                 return Json(ex);
             }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult FindPromo()
+        {
+            var promoId = Convert.ToInt32(Request.Form["ddlPromotion"]);
+            return RedirectToAction("GetPromo", new { id = promoId });
         }
         #endregion
 
