@@ -47,7 +47,7 @@ namespace AndersonExamWeb.Controllers
 
             catch (Exception ex)
             {
-                return Json(ex);
+                return RedirectToAction("Create", JsonRequestBehavior.AllowGet);
             }           
         }
              
