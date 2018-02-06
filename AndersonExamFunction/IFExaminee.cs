@@ -14,8 +14,7 @@ namespace AndersonExamFunction
         List<Examinee> Read();
 
         List<Examinee> Read(int examineeId, string sortBy);
-        List<Examinee> ReadAndersonPhEmployees();
-        List<Examinee> ReadAssetHistory(int assetId, string sortBy);
+
         List<Examinee> Read(ExamineeFilter examineeFilter);
         #endregion
 

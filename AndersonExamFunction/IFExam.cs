@@ -14,6 +14,7 @@ namespace AndersonExamFunction
         List<Exam> Read();
         List<Exam> ReadExamForPosition(int positionId);
         List<Exam> ReadExamForExaminee(int examineeId);
+        List<Exam> Read(ExamFilter examFilter);
         Exam ReadExamForTakeExam(int examId);
         #endregion
 
@@ -23,6 +24,7 @@ namespace AndersonExamFunction
 
         #region DELETE
         void Delete(Exam Exam);
+        object Read(object examFilter);
         #endregion
 
         #region OTHER FUNCTION

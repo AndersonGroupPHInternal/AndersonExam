@@ -54,11 +54,17 @@ namespace AndersonExamWeb.Controllers
         public JsonResult ReadExamForPosition(int id)
         {
             return Json(_iFExam.ReadExamForPosition(id));
-        }       
-        #endregion
-  
-        #region Update
-        [HttpGet]
+        }
+
+        [HttpPost]
+         public JsonResult FilteredRead(ExamFilter examFilter)
+         {
+             return Json(_iFExam.Read(examFilter));
+         }
+    #endregion
+
+    #region Update
+    [HttpGet]
         public ActionResult Update(int id)
         {
             return View(_iFExam.Read(id));

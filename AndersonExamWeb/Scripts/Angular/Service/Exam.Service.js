@@ -13,8 +13,18 @@
             ReadExamForExaminee: ReadExamForExaminee,
             ReadExamForPosition: ReadExamForPosition,
             ReadExamForTakeExam: ReadExamForTakeExam,
+            FilteredRead: FilteredRead,
             Delete: Delete
         }
+
+        function FilteredRead(examFilter) {
+            return $http({
+          method: 'POST',
+          url: '/Exam/FilteredRead',
+          data: $.param(examFilter),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          });
+          } 
 
         function Read() {
             return $http({
@@ -23,6 +33,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         }
+
 
         function ReadExamForExaminee() {
             return $http({

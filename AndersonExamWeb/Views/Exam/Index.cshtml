@@ -6,7 +6,11 @@
 <div ng-controller="ExamController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-4">
+
             <a href="../Exam/Create" class="btn btn-default">Create</a>
+
+            <a class="btn btn-default" ng-click="model.REfilter()">Search</a>
+            <input type="text" placeholder="Search for exam.." ng-model="model.ExamFilter.Names">
         </div>
     </div>
     <div class="row">
@@ -24,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="exam in model.Exams" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(exam.ExamId)">
+                    <tr class="clickableRow" ng-repeat="exam in model.Exams"|filter:SearchExam" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(exam.ExamId)">
                         <td><span ng-bind="exam.ExamId"></span></td>
                         <td><span ng-bind="exam.TimeLimit"></span></td>
                         <td><span ng-bind="exam.Name"></span></td>
