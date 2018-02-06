@@ -12,6 +12,11 @@ namespace AndersonExamFunction
         #region READ
         decimal Percentage(int examineeId);
         List<Examinee> Read();
+
+        List<Examinee> Read(int examineeId, string sortBy);
+        List<Examinee> ReadAndersonPhEmployees();
+        List<Examinee> ReadAssetHistory(int assetId, string sortBy);
+        List<Examinee> Read(ExamineeFilter examineeFilter);
         #endregion
 
         #region UPDATE
@@ -20,6 +25,7 @@ namespace AndersonExamFunction
 
         #region DELETE
         void Delete(int examineeId);
+        object Read(object examineeFilter);
         #endregion
 
         #region OTHER FUNCTION
