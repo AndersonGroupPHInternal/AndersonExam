@@ -8,6 +8,9 @@
 
 <form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
+
+    <center><bold><span id="theTime" class="timeClass"></span></bold></center>
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
