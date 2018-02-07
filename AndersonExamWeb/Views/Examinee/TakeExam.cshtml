@@ -8,10 +8,6 @@
 
 <form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
-
-    <input type="hidden" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
-    <center><bold><span id="theTime" class="timeClass"></span></bold></center>
-
         <div class="panel panel-default">
             <div class="panel-body">
                 <div ng-controller="ExamineeController as model" ng-init="model.InitialiseForTakeExam(@Model.ExamId)">
