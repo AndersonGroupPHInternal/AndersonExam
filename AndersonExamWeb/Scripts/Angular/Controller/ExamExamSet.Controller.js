@@ -135,7 +135,7 @@
         }
 
         function ShowChoices(examExamSet) {
-            if (examExamSet.ShowChoices == undefined) {
+            if (examExamSet.ShowChoices === undefined) {
                 examExamSet.ShowChoices = true;
             }
             else {
