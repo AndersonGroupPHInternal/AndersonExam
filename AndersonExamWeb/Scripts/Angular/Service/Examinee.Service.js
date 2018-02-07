@@ -11,8 +11,19 @@
         return {
             Read: Read,
             Percentage: Percentage,
+            FilteredRead: FilteredRead,
             Delete: Delete
         }
+
+        function FilteredRead(examineeFilter) {
+            return $http({
+                method: 'POST',
+                url: '/Examinee/FilteredRead',
+                data: $.param(examineeFilter),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        } 
+
 
         function Read() {
             return $http({

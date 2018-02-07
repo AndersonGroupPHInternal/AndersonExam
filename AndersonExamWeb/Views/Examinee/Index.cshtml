@@ -3,7 +3,14 @@
 }
 
 <div ng-controller="ExamineeController as model" ng-init="model.Initialise()">
+    <div class="row">
+        <div class="col-sm-4">
+            <a class=   "btn btn-default" ng-click="model.Rfilter()">Search</a>
 
+            <input type="text" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name">
+
+        </div>  
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-sm table-bordered ">
@@ -12,7 +19,7 @@
                         <th>Examinee Id</th>
                         <th>Position Id</th>
                         <th>Reference Code</th>
-                        <th>Last Name</th>
+                        <th>Last Name</th>  
                         <th>First Name</th>
                         <th>Middle Name</th>
                         <th>Percentage</th>
@@ -20,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="examinee in model.Examinees" ng-click="$event.originalEvent.dropdown || model.TakenExamsPage(examinee.ExamineeId)">
+                    <tr class="clickableRow" ng-repeat="examinee in model.Examinees"|filter:SearchExaminee" ng-click="$event.originalEvent.dropdown || model.TakenExamsPage(examinee.ExamineeId)">
                         <td><span ng-bind="examinee.ExamineeId"></span></td>
                         <td><span ng-bind="examinee.PositionId"></span></td>
                         <td><span ng-bind="examinee.ReferenceCode"></span></td>

@@ -18,6 +18,8 @@
         vm.Examinees;
         vm.Positions;
         vm.Questions;
+        vm.ExamineeFilter;
+        vm.SearchExaminee;
         //public create
         //public read
         vm.Initialise = Initialise;
@@ -38,6 +40,28 @@
         //public other
         vm.GoToTakeExam = GoToTakeExam;
         vm.SingleSelect;
+
+        vm.Rfilter = Rfilter;
+        
+        function Rfilter() {
+            console.log("gasd");
+                  ExamineeService.FilteredRead(vm.ExamineeFilter)
+                 .then(function (response) {
+               vm.Examinees = response.data;
+                                        })
+               .catch(function (data, status) {
+                 new PNotify({
+                 title: status,
+                 text: data,
+                 type: 'error',
+                 hide: true,
+                 addclass: "stack-bottomright"
+                   });
+                
+                  });
+        } 
+        
+
         function Initialise() {
             Read();
             ReadForPosition();
@@ -72,7 +96,7 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-                })
+                });
         }
 
         function ReadExamForExaminee() {
@@ -88,7 +112,7 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-                })
+                });
         }
 
         function ReadForPosition() {

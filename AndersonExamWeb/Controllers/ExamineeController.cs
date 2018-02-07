@@ -12,11 +12,12 @@ namespace AndersonExamWeb.Controllers
         private IFExaminee _iFExaminee;
         private IFExam _iFExam;
         private IFPosition _iFPosition;
-        public ExamineeController (IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
+        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
         {
             _iFExaminee = iFExaminee;
             _iFExam = iFExam;
             _iFPosition = iFPosition;
+
 
         }
 
@@ -28,9 +29,10 @@ namespace AndersonExamWeb.Controllers
 
             try
             {
+
                 var position = _iFPosition.Read(positionName);
                 var examinee = new Examinee
-                
+
                 {
                     PositionId = position.PositionId,
                     ReferenceCode = referencecode,
@@ -39,19 +41,19 @@ namespace AndersonExamWeb.Controllers
                     Middlename = middleName,
 
                 };
+
                 examinee = _iFExaminee.Create(examinee);
                 Session["ExamineeId"] = null;
                 Session["ExamineeId"] = examinee.ExamineeId;
-                return RedirectToAction("SelectExam",JsonRequestBehavior.AllowGet);
+                return RedirectToAction("SelectExam", JsonRequestBehavior.AllowGet);
             }
-
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("Create", JsonRequestBehavior.AllowGet);
-            }           
+            }
+
         }
-             
-        
+
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult Create()
@@ -82,7 +84,7 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
-        
+
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public ActionResult Create(Examinee examinee)
@@ -100,12 +102,6 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult FindPromo()
-        {
-            var promoId = Convert.ToInt32(Request.Form["ddlPromotion"]);
-            return RedirectToAction("GetPromo", new { id = promoId });
-        }
         #endregion
 
         #region Read
@@ -139,10 +135,16 @@ namespace AndersonExamWeb.Controllers
         {
             return View(id);
         }
-        #endregion
+
+        [HttpPost]
+        public JsonResult FilteredRead(ExamineeFilter examineeFilter)
+         {
+            return Json(_iFExaminee.Read(examineeFilter));
+        }
+    #endregion
 
         #region Update
-        [HttpPost]
+    [HttpPost]
         public JsonResult Update(Examinee Examinee)
         {
             return Json(_iFExaminee.Update(Examinee));
@@ -158,5 +160,6 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
+        
     }
 }
