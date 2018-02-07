@@ -4,7 +4,7 @@ namespace AndersonExamData
 {
     public interface IDExaminee : IDBase
     {
-
+        
         #region CREATE
         #endregion
 

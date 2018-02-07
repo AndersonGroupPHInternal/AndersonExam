@@ -55,16 +55,16 @@ namespace AndersonExamWeb.Controllers
         {
             return Json(_iFExam.ReadExamForPosition(id));
         }
-        //Check if this is redundant business logic ang function with public ActionResult Update(int id)
-        [HttpPost]
-        public JsonResult ReadExamForTakeExam(int id)
-        {
-            return Json(_iFExam.ReadExamForTakeExam(id));
-        }
-        #endregion
 
-        #region Update
-        [HttpGet]
+        [HttpPost]
+         public JsonResult FilteredRead(ExamFilter examFilter)
+         {
+              return Json(_iFExam.Read(examFilter));
+         }
+    #endregion
+
+    #region Update
+    [HttpGet]
         public ActionResult Update(int id)
         {
             return View(_iFExam.Read(id));
@@ -91,7 +91,8 @@ namespace AndersonExamWeb.Controllers
             //    return Json(ex);
             //}
         }
-        #endregion
+        #endregion 
+
 
     }
 }

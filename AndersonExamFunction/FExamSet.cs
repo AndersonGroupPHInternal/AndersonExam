@@ -30,7 +30,7 @@ namespace AndersonExamFunction
         {
             EExamSet eExamSet = _iDExamSet.Read<EExamSet>(a => a.ExamSetId == examSetId);
             return ExamSet(eExamSet);
-        }     
+        }
 
         //public List<ExamSet> ReadExamSetForPosition(int positionId)
         //{
@@ -77,7 +77,7 @@ namespace AndersonExamFunction
                 PositionId = eExamSet.PositionId,
 
                 Description = eExamSet.Description,
-              
+
             };
             return returnExamSet;
         }
@@ -88,8 +88,8 @@ namespace AndersonExamFunction
             {
                 ExamSetId = a.PositionId,
                 PositionId = a.PositionId,
-  
-                Description = a.Description,              
+
+                Description = a.Description,
             });
 
             return returnExamSet.ToList();

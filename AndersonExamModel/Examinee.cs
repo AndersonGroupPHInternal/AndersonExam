@@ -15,5 +15,7 @@ namespace AndersonExamModel
 
         public virtual Position Position { get; set; }
         public virtual ICollection<TakenExam> TakenExams { get; set; }
+
+
     }
 }
