@@ -31,7 +31,7 @@
                 method: 'POST',
                 url: '/Exam/Read',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            });
+            }); 
         }
 
 

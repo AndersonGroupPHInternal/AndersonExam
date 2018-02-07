@@ -19,21 +19,20 @@
 
         vm.Delete = Delete;
 
-        vm.REfilter = REfilter;
+        vm.Rfilter = Rfilter;
        
-        function REfilter() {
-            console.log("gone");
+        function Rfilter() {
            ExamService.FilteredRead(vm.ExamFilter)
              .then(function (response) {
               vm.Exams = response.data;
               })
              .catch(function (data, status) {
-                 title: status,
-                 text: data,
-             new PNotify({
-               type: 'error',
-               hide: true,
-               addclass: "stack-bottomright"
+                 new PNotify({
+                     title: status,
+                     text: data,
+                     type: 'error',
+                     hide: true,
+                     addclass: "stack-bottomright"
              });
                 
              });

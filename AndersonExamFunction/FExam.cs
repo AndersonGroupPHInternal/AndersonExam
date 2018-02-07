@@ -45,6 +45,16 @@ namespace AndersonExamFunction
             return Exams(eExams);
         }
 
+        public List<Exam> Read(ExamFilter examFilter)
+        {
+            Expression<Func<EExam, bool>> predicate =
+                      a => (a.Name.Contains(examFilter.Names) || a.Description.Contains(examFilter.Names)) || a.Instructions.Contains(examFilter.Names)
+                 || examFilter.Names == null;
+
+            List<EExam> eExams = _iDExam.List(predicate);
+            return Exams(eExams);
+        }
+
         public List<Exam> ReadExamForExaminee(int examineeId)
         {
             List<EExam> eExams = _iDExam.List<EExam>(a => a.ExamPositions.Any(
@@ -57,16 +67,7 @@ namespace AndersonExamFunction
             List<EExam> eExams = _iDExam.List<EExam>(a => a.ExamPositions.Any(b => b.PositionId == positionId));
             return Exams(eExams);
         }
-
-        public List<Exam> Read(ExamFilter examFilter)
-         {
-            Expression<Func<EExam, bool>> predicate =
-           a => a.Name.Contains (examFilter.Names) || examFilter.Names == null ;
- 
-             List<EExam> eExams = _iDExam.List(predicate);
-             return Exams(eExams);
-         }
-
+        
     #endregion
 
         #region UPDATE

@@ -59,7 +59,7 @@ namespace AndersonExamWeb.Controllers
         [HttpPost]
          public JsonResult FilteredRead(ExamFilter examFilter)
          {
-             return Json(_iFExam.Read(examFilter));
+              return Json(_iFExam.Read(examFilter));
          }
     #endregion
 
