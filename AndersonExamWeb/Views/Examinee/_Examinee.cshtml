@@ -1,6 +1,7 @@
 ﻿@using AndersonExamModel;
 @model Examinee
 
+
 <div class="form-group" ng-controller="ExamineeController as model" ng-init="model.ReadForPosition()">
     <input type="hidden" name="PositionId" value="{{model.Position.PositionId}}" />
     <label for="Position">Position</label>
@@ -13,13 +14,16 @@
         </ui-select-choices>
     </ui-select>
 </div>
+
+
+
 <div class="form-group">
     <label for="ReferenceCode">ReferenceCode</label>
     <input type="text" class="form-control" id="ReferenceCode" name="ReferenceCode" placeholder="ReferenceCode" value="@Model.ReferenceCode">
 </div>
 <div class="form-group">
     <label for="Lastname">Lastname</label>
-    <input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Lastname" value="@Model.Lastname">
+    <input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Lastname" value="@Model.Lastname" >
 </div>
 <div class="form-group">
     <label for="Firstname">Firstname</label>
