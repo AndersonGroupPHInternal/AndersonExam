@@ -9,11 +9,7 @@
 <form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
 
-
-    <input type="hidden" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
     <center><bold><span id="theTime" class="timeClass"></span></bold></center>
-  
-
 
         <div class="panel panel-default">
             <div class="panel-body">
@@ -51,7 +47,7 @@
                                         <td><span ng-bind="question.Description"></span></td>
                                         <td>
                                             <div ng-repeat="question in question.QuestionImages">
-                                                <img ng-src="~/Content/Images/{{question.Url}}" alt="None" style="height:150px;width:150px;" />
+                                                <img ng-src="~/Content/Images/{{question.Url}}" alt="None" style="height:500px;width:350px;" />
                                             </div>
                                         </td>
                                     </tr>

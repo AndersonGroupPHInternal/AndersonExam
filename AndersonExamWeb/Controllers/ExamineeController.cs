@@ -13,11 +13,12 @@ namespace AndersonExamWeb.Controllers
         private IFExaminee _iFExaminee;
         private IFExam _iFExam;
         private IFPosition _iFPosition;
-        public ExamineeController (IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
+        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
         {
             _iFExaminee = iFExaminee;
             _iFExam = iFExam;
             _iFPosition = iFPosition;
+
 
         }
 
@@ -30,13 +31,14 @@ namespace AndersonExamWeb.Controllers
             try
             {
                 var examinee = new Examinee
+                
                 {
                     ReferenceCode = referencecode,
                     Lastname = lastName,
                     Firstname = firstName,
                     Middlename = middleName,
                 };
-
+                
                 var position = _iFPosition.Read(positionName);
                 if(position.PositionId != 0)
                 {
@@ -90,7 +92,7 @@ namespace AndersonExamWeb.Controllers
             }
         }
 
-        
+
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public ActionResult Create(Examinee examinee)
@@ -107,6 +109,7 @@ namespace AndersonExamWeb.Controllers
                 return Json(ex);
             }
         }
+
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult FindPromo()
@@ -147,10 +150,16 @@ namespace AndersonExamWeb.Controllers
         {
             return View(id);
         }
-        #endregion
+
+        [HttpPost]
+        public JsonResult FilteredRead(ExamineeFilter examineeFilter)
+         {
+            return Json(_iFExaminee.Read(examineeFilter));
+        }
+    #endregion
 
         #region Update
-        [HttpPost]
+    [HttpPost]
         public JsonResult Update(Examinee Examinee)
         {
             return Json(_iFExaminee.Update(Examinee));
@@ -166,6 +175,10 @@ namespace AndersonExamWeb.Controllers
         }
         #endregion
 
+
     
+
+        
+
     }
 }
