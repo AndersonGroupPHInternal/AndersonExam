@@ -40,10 +40,9 @@ namespace AndersonExamFunction
 
         public List<Examinee> Read(ExamineeFilter examineeFilter)
         {
-             Expression<Func<EExaminee, bool>> predicate =
-             a => (a.Firstname.Contains(examineeFilter.Name) || a.Middlename.Contains(examineeFilter.Name)) || a.Lastname.Contains(examineeFilter.Name)
-                 || examineeFilter.Name == null;
- 
+            Expression<Func<EExaminee, bool>> predicate =
+            a => (a.Firstname.Contains(examineeFilter.Name) || a.Middlename.Contains(examineeFilter.Name)) || a.Lastname.Contains(examineeFilter.Name);
+
  
              List<EExaminee> eExaminees = _iDExaminee.List(predicate);
              return Examinees(eExaminees);
