@@ -1,8 +1,10 @@
 ﻿using AndersonExamData;
 using AndersonExamEntity;
 using AndersonExamModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace AndersonExamFunction
 {
@@ -35,10 +37,20 @@ namespace AndersonExamFunction
             List<EExaminee> eExaminees = _iDExaminee.List<EExaminee>(a => true);
             return Examinees(eExaminees);
         }
-        #endregion
+
+        public List<Examinee> Read(ExamineeFilter examineeFilter)
+        {
+            Expression<Func<EExaminee, bool>> predicate =
+            a => (a.Firstname.Contains(examineeFilter.Name) || a.Middlename.Contains(examineeFilter.Name)) || a.Lastname.Contains(examineeFilter.Name);
+
+ 
+             List<EExaminee> eExaminees = _iDExaminee.List(predicate);
+             return Examinees(eExaminees);
+         }
+    #endregion
 
         #region UPDATE
-        public Examinee Update(Examinee examinee)
+    public Examinee Update(Examinee examinee)
         {
             var eExaminee = _iDExaminee.Update(EExaminee(examinee));
             return (Examinee(eExaminee));
@@ -97,6 +109,26 @@ namespace AndersonExamFunction
                 Middlename = eExaminee.Middlename
             };
             return returnExaminee;
+        }
+
+        public List<Examinee> Read(int examineeId, string sortBy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Examinee> ReadAndersonPhEmployees()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Examinee> ReadAssetHistory(int assetId, string sortBy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Read(object examineeFilter)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

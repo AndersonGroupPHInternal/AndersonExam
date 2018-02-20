@@ -2,6 +2,7 @@
 using AndersonExamFunction;
 using AndersonExamModel;
 using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.SessionState;
 
@@ -11,28 +12,54 @@ namespace AndersonExamWeb.Controllers
     {
         private IFExaminee _iFExaminee;
         private IFExam _iFExam;
-        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam)
+        private IFPosition _iFPosition;
+        public ExamineeController(IFExaminee iFExaminee, IFExam iFExam, IFPosition iFPosition)
         {
             _iFExaminee = iFExaminee;
             _iFExam = iFExam;
+            _iFPosition = iFPosition;
+
         }
+
 
         #region Create
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string Firstname, string positionName, string firstName, string middleName, string lastName, string referencecode)
         {
-
             try
             {
-                return View(new Examinee());
+                var examinee = new Examinee
+                {
+                    ReferenceCode = referencecode,
+                    Lastname = lastName,
+                    Firstname = firstName,
+                    Middlename = middleName,
+                };
+
+                var position = _iFPosition.Read(positionName);
+                if (position.PositionId != 0)
+                {
+                    examinee.PositionId = position.PositionId;
+                    examinee = _iFExaminee.Create(examinee);
+                    Session["ExamineeId"] = null;
+                    Session["ExamineeId"] = examinee.ExamineeId;
+                    return RedirectToAction("SelectExam", JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return View(examinee);
+                }
             }
+
             catch (Exception ex)
             {
-                return Json(ex);
-
+                return RedirectToAction("Create");
             }
         }
+
+
+
 
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
@@ -47,6 +74,7 @@ namespace AndersonExamWeb.Controllers
                 return Json(ex);
             }
         }
+
 
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
@@ -64,7 +92,7 @@ namespace AndersonExamWeb.Controllers
                 return Json(ex);
             }
         }
-        #endregion
+        #endregion          
 
         #region Read
         [HttpGet]
@@ -97,10 +125,16 @@ namespace AndersonExamWeb.Controllers
         {
             return View(id);
         }
-        #endregion
+
+        [HttpPost]
+        public JsonResult FilteredRead(ExamineeFilter examineeFilter)
+        {
+        return Json(_iFExaminee.Read(examineeFilter));
+        }
+    #endregion
 
         #region Update
-        [HttpPost]
+    [HttpPost]
         public JsonResult Update(Examinee Examinee)
         {
             return Json(_iFExaminee.Update(Examinee));
@@ -115,6 +149,7 @@ namespace AndersonExamWeb.Controllers
             return Json(string.Empty);
         }
         #endregion
+
 
     }
 }

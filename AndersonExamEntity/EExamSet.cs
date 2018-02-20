@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AndersonExamEntity
 {
     [Table("ExamSet")]
-    public class EExamSet: EBase
+    public class EExamSet : EBase
     {
-      
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PositionId { get; set; }

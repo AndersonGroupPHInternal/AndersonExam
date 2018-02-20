@@ -1,8 +1,10 @@
 ﻿using AndersonExamData;
 using AndersonExamEntity;
 using AndersonExamModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace AndersonExamFunction
 {
@@ -43,6 +45,15 @@ namespace AndersonExamFunction
             return Exams(eExams);
         }
 
+        public List<Exam> Read(ExamFilter examFilter)
+        {
+            Expression<Func<EExam, bool>> predicate =
+                      a => a.Name.Contains(examFilter.Names)    || examFilter.Names == null;
+            
+            List<EExam> eExams = _iDExam.List(predicate);
+            return Exams(eExams);
+        }
+
         public List<Exam> ReadExamForExaminee(int examineeId)
         {
             List<EExam> eExams = _iDExam.List<EExam>(a => a.ExamPositions.Any(
@@ -55,10 +66,11 @@ namespace AndersonExamFunction
             List<EExam> eExams = _iDExam.List<EExam>(a => a.ExamPositions.Any(b => b.PositionId == positionId));
             return Exams(eExams);
         }
-        #endregion
+        
+    #endregion
 
         #region UPDATE
-        public Exam Update(Exam exam)
+    public Exam Update(Exam exam)
         {
             var eExam = _iDExam.Update(EExam(exam));
             return (Exam(eExam));
@@ -117,6 +129,11 @@ namespace AndersonExamFunction
             });
 
             return returnExams.ToList();
+        }
+
+        public object Read(object examFilter)
+        {
+            throw new NotImplementedException();
         }
 
 

@@ -25,6 +25,15 @@ namespace AndersonExamFunction
         #endregion
 
         #region READ
+        public Position Read(string positionName)
+        {
+            var ePosition = _iDPosition.Read<EPosition>(a => a.PositionName == positionName);
+            if (ePosition == null)
+                return new Position();
+
+            return Position(ePosition);
+        }
+
         public List<Position> Read()
         {
             List<EPosition> ePositions = _iDPosition.List<EPosition>(a => true);
@@ -86,11 +95,6 @@ namespace AndersonExamFunction
             //throw new System.NotImplementedException();
             EPosition ePosition = _iDPosition.Read<EPosition>(a => a.PositionId == positionId);
             return Position(ePosition);
-        }
-
-        public List<Position> ReadExamForPosition(int positionId)
-        {
-            throw new System.NotImplementedException();
         }
         #endregion
     }
