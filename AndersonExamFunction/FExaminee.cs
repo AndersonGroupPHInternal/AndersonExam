@@ -27,7 +27,7 @@ namespace AndersonExamFunction
         #endregion
 
         #region READ
-        public int Percentage(int examineeId)
+        public decimal Percentage(int examineeId)
         {
             return _iDExaminee.Percentage(examineeId);
         }

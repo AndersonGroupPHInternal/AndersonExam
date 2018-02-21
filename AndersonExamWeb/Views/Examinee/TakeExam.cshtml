@@ -6,10 +6,10 @@
     ViewBag.Title = "TakeExam";
 }
 
-<form action="~/TakenExam/Create" method="post" id="send">
+<form action="~/TakenExam/Create" method="post">
     <h2>Take Exam</h2>
 
-    <P id="timer"> </P>
+
     <input type="hidden" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
     <center><bold><span id="theTime" class="timeClass"></span></bold></center>
   
