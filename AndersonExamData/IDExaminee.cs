@@ -9,7 +9,7 @@ namespace AndersonExamData
         #endregion
 
         #region READ
-        decimal Percentage(int examineeId);
+       int Percentage(int examineeId);
         #endregion
 
         #region UPDATE

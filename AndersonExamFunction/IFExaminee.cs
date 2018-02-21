@@ -10,7 +10,7 @@ namespace AndersonExamFunction
         #endregion
 
         #region READ
-        decimal Percentage(int examineeId);
+        int Percentage(int examineeId);
         List<Examinee> Read();
 
         List<Examinee> Read(int examineeId, string sortBy);
