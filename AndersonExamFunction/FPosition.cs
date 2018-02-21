@@ -27,7 +27,10 @@ namespace AndersonExamFunction
         #region READ
         public Position Read(string positionName)
         {
-            var ePosition = _iDPosition.Read<EPosition>(a => a.PositionName ==positionName);
+            var ePosition = _iDPosition.Read<EPosition>(a => a.PositionName == positionName);
+            if (ePosition == null)
+                return new Position();
+
             return Position(ePosition);
         }
 
