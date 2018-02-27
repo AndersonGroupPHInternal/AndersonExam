@@ -48,9 +48,8 @@ namespace AndersonExamFunction
         public List<Exam> Read(ExamFilter examFilter)
         {
             Expression<Func<EExam, bool>> predicate =
-                      a => (a.Name.Contains(examFilter.Names) || a.Description.Contains(examFilter.Names)) || a.Instructions.Contains(examFilter.Names)
-                 || examFilter.Names == null;
-
+                      a => a.Name.Contains(examFilter.Names)    || examFilter.Names == null;
+            
             List<EExam> eExams = _iDExam.List(predicate);
             return Exams(eExams);
         }

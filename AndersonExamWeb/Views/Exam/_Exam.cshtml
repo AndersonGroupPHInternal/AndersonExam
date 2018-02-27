@@ -1,12 +1,13 @@
-﻿@*@using AndersonExamModel;
+@*@using AndersonExamModel;
 @model Exam*@
 
 <input type="hidden" name="ExamId" value="@Model.ExamId"/>
 
 
 <div class="form-group">
-    <label for="TimeLimit">Time Limit(Sec.)</label>
-    <input type="number" min="0" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="TimeLimit" value="@Model.TimeLimit">
+
+    <label for="TimeLimit">TimeLimit(Sec.)</label>
+    <input type="number" class="form-control" id="TimeLimit" name="TimeLimit" placeholder="Time Limit" min="1" value="@Model.TimeLimit" required>
 </div>
 <div class="form-group">
     <label for="TimeLimit">Name</label>

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\AndersonExam\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,21 +25,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\AndersonExam\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BaseData">
-      <HintPath>..\..\DLL\Release\Base\BaseData.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Release\Base\BaseEntity.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\DLL\Release\Base\EntityFramework.dll</HintPath>
-    </Reference>
+    <Reference Include="BaseData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,7 +48,6 @@
     <Compile Include="DChoice.cs" />
     <Compile Include="DChoiceImage.cs" />
     <Compile Include="DExam.cs" />
-    <Compile Include="DExamSet.cs" />
     <Compile Include="DTakenExam.cs" />
     <Compile Include="DExaminee.cs" />
     <Compile Include="DPosition.cs" />
@@ -64,7 +57,6 @@
     <Compile Include="IDChoiceImage.cs" />
     <Compile Include="IDExam.cs" />
     <Compile Include="IDExamPosition.cs" />
-    <Compile Include="IDExamSet.cs" />
     <Compile Include="IDTakenExam.cs" />
     <Compile Include="IDExaminee.cs" />
     <Compile Include="IDPosition.cs" />

@@ -12,7 +12,7 @@ namespace AndersonExamWeb.Controllers
         public ExamController(IFExam iFExam)
         {
             _iFExam = iFExam;
-        }
+        } 
 
         #region Create
         [HttpGet]
