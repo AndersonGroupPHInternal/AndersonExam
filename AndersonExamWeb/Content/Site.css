@@ -1,8 +1,9 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-bottom: 20px;
+    padding-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top:60px;
 }
 
 .clickableRow {
@@ -16,3 +17,20 @@
 .MessageAlignment{
     text-align: center;
 }
+
+textarea{
+        resize:none;
+        overflow: hidden;
+    }
+
+.footer {   
+        width: 100%;
+        color: black;
+        text-align: center;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: #efefef;
+        }

@@ -1,4 +1,4 @@
-﻿@using AndersonExamModel;
+@using AndersonExamModel;
 @model Exam
 
 
@@ -42,8 +42,8 @@
                                 <td>
                                     @*IMAGES*@
                                     <div ng-repeat="question in question.QuestionImages">
-                                        <img ng-src="~/Content/Images/{{question.Url}}" alt="None"  style="height:150px;width:150px;"/>
-                                    </div>
+                                        <img ng-src="~/Content/Images/{{question.Url}}" alt="None"  style="height:500px;width:350px;"/>
+                                     </div>
                                 </td>
                                 <td ng-click="$event.originalEvent.dropdown = true">
                                     <div class="dropdown">

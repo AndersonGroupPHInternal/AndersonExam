@@ -5,9 +5,9 @@
 <input type="hidden" name="PositionId" value="@Model.PositionId" />
 <div class="form-group">
     <label for="PositionName">Position Name</label>
-    <input type="text" class="form-control" id="PositionName" name="PositionName" placeholder="PositionName" value="@Model.PositionName">
+    <input type="text" class="form-control" id="PositionName" name="PositionName" placeholder="Position Name" value="@Model.PositionName" required>
     <label for="PositionName">Position Description</label>
-    <input type="text" class="form-control" id="Description" name="Description" placeholder="Description" value="@Model.Description">
+    <input type="text" class="form-control" id="Description" name="Description" placeholder="Description" value="@Model.Description" required>
 </div>
 
 <div class="panel panel-default">
@@ -18,7 +18,7 @@
                 <div class="col-sm-offset-3 col-sm-6">
                     <div>
                         <label>Add Exams</label>
-                        <ui-select multiple ng-model="model.SelectedExam">
+                        <ui-select multiple ng-model="model.SelectedExam" ng-required="required">
                             <ui-select-match placeholder="Select Exam...">
                                 {{$item.ExamId}} - {{$item.Name}}
                             </ui-select-match>
@@ -27,7 +27,6 @@
                             </ui-select-choices>
                         </ui-select>
                         <div ng-repeat="selected in model.MultipleSelected">
-
                         </div>
                     </div>
                 </div>

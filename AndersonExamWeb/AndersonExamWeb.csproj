@@ -529,6 +529,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Angular\app.module.js" />
+    <Content Include="Scripts\Angular\Controller\ExamTimer.js" />
     <Content Include="Scripts\Angular\Controller\Position.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Examinee.Controller.js" />
     <Content Include="Scripts\Angular\Controller\ExamSet.Controller.js" />

@@ -1,4 +1,4 @@
-﻿    @using AndersonExamModel;
+@using AndersonExamModel;
 @model Exam
 @{
     ViewBag.Title = "TakeExam";
@@ -79,27 +79,25 @@
                 </div>
             </div>
         </div>
-    </div>
-    <label>(Check your answers before submitting)</label><br />
-    <input type="submit" class="btn btn-success" value="submit" />
+        <label>(Check your answers before submitting)</label><br />
+        <input type="submit" class="btn btn-success" value="submit" />
 </form>
-<!--TIMER CODES -->
 <script>
 var newTime = new Date();
-newTime.setTime(newTime.getTime() + (@Model.TimeLimit*1000));
+newTime.setTime(newTime.getTime() +( @Model.TimeLimit*1000));
 var x = setInterval(function() {
-var now = new Date().getTime();
-var distance = newTime-now;
-var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-document.getElementById("timer").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
-  if (distance < 0) {
-    clearInterval(x);
-    alert("Times Up!");
-    document.getElementById("timer").innerHTML = "Exam Time Finished";
-    document.getElementById("send").submit();
+    var now = new Date().getTime();
+    var distance = newTime-now;
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60  *60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("timer").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
+    if (distance < 0) {
+        clearInterval(x);
+        alert("Times Up!");
+        document.getElementById("timer").innerHTML = "Exam Time Finished";
+        document.getElementById("send").submit();
 
-  }
+    }
 }, 1000);
-</script>
+</script> 
