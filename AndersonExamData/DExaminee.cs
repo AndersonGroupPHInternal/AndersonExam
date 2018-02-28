@@ -7,7 +7,8 @@ namespace AndersonExamData
     public class DExaminee : DBase, IDExaminee
     {
         public DExaminee() : base(new Context())
-        {
+        { 
+
         }
         #region CREATE
         #endregion
