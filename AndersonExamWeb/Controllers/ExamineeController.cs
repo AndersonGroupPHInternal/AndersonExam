@@ -1,4 +1,4 @@
-﻿using AccountsWebAuthentication.Helper;
+using AccountsWebAuthentication.Helper;
 using AndersonExamFunction;
 using AndersonExamModel;
 using System;
@@ -37,6 +37,7 @@ namespace AndersonExamWeb.Controllers
                     Middlename = middleName,
                 };
 
+
                 var position = _iFPosition.Read(positionName);
                 if (position.PositionId != 0)
                 {
@@ -50,6 +51,7 @@ namespace AndersonExamWeb.Controllers
                 {
                     return View(examinee);
                 }
+
             }
 
             catch (Exception ex)
@@ -57,10 +59,6 @@ namespace AndersonExamWeb.Controllers
                 return RedirectToAction("Create");
             }
         }
-
-
-
-
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
         public ActionResult SelectExam()
@@ -149,7 +147,5 @@ namespace AndersonExamWeb.Controllers
             return Json(string.Empty);
         }
         #endregion
-
-
     }
 }

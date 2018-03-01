@@ -31,15 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base">
-      <HintPath>..\..\DLL\Release\Base\Base.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseData">
-      <HintPath>..\..\DLL\Release\Base\BaseData.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Release\Base\BaseEntity.dll</HintPath>
-    </Reference>
+    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="BaseData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -52,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FExamPosition.cs" />
-    <Compile Include="FExamSet.cs" />
     <Compile Include="FTakenExam.cs" />
     <Compile Include="FExaminee.cs" />
     <Compile Include="FPosition.cs" />
@@ -63,7 +56,6 @@
     <Compile Include="FExam.cs" />
     <Compile Include="FAnswer.cs" />
     <Compile Include="IFExamPosition.cs" />
-    <Compile Include="IFExamSet.cs" />
     <Compile Include="IFTakenExam.cs" />
     <Compile Include="IFExaminee.cs" />
     <Compile Include="IFPosition.cs" />

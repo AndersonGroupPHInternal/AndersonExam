@@ -31,9 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Release\Base\BaseEntity.dll</HintPath>
-    </Reference>
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EExamSet.cs" />
     <Compile Include="ETakenExam.cs" />
     <Compile Include="EExamPosition.cs" />
     <Compile Include="EExaminee.cs" />
