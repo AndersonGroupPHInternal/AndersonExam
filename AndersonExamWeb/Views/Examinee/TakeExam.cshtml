@@ -84,7 +84,7 @@
 </form>
 <script>
 var newTime = new Date();
-newTime.setTime(newTime.getTime() +( @Model.TimeLimit*1000));
+newTime.setTime(newTime.getTime() +( @Model.TimeLimit*60*1000));
 var x = setInterval(function() {
     var now = new Date().getTime();
     var distance = newTime-now;
