@@ -3,6 +3,7 @@ using AndersonExamEntity;
 using AndersonExamModel;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace AndersonExamFunction
 {
@@ -97,6 +98,11 @@ namespace AndersonExamFunction
             //throw new System.NotImplementedException();
             EPosition ePosition = _iDPosition.Read<EPosition>(a => a.PositionId == positionId);
             return Position(ePosition);
+        }
+
+        public List<Position> ReadExamForPosition(int takenExamId)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

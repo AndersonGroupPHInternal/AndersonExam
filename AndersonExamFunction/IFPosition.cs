@@ -11,6 +11,7 @@ namespace AndersonExamFunction
 
         #region READ
         Position Read(int positionId);
+        Position Read(string positionName);
         List<Position> Read();
         List<Position> ReadExamForPosition(int takenExamId);  
         #endregion

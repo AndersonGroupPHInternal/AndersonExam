@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\AndersonExam\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,6 +48,7 @@
     <Compile Include="DChoice.cs" />
     <Compile Include="DChoiceImage.cs" />
     <Compile Include="DExam.cs" />
+    <Compile Include="DExamSet.cs" />
     <Compile Include="DTakenExam.cs" />
     <Compile Include="DExaminee.cs" />
     <Compile Include="DPosition.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="IDChoiceImage.cs" />
     <Compile Include="IDExam.cs" />
     <Compile Include="IDExamPosition.cs" />
+    <Compile Include="IDExamSet.cs" />
     <Compile Include="IDTakenExam.cs" />
     <Compile Include="IDExaminee.cs" />
     <Compile Include="IDPosition.cs" />

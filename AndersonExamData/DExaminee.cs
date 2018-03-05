@@ -7,13 +7,14 @@ namespace AndersonExamData
     public class DExaminee : DBase, IDExaminee
     {
         public DExaminee() : base(new Context())
-        {
+        { 
+
         }
         #region CREATE
         #endregion
 
         #region READ
-        public decimal Percentage(int examineeId)
+        public int Percentage(int examineeId)
         {
             using (var context = new Context())
             {
@@ -29,7 +30,7 @@ namespace AndersonExamData
                 if (takenExamSummary == null || takenExamSummary.Count() == 0)
                     return 0;
                 var totalPercentage = takenExamSummary?.Average(a => ((a.Score * 100) / a.Total)) ?? 0;
-                return (decimal)totalPercentage;
+                return (int)totalPercentage;
             }
         }
         #endregion

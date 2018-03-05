@@ -25,7 +25,7 @@ namespace AndersonExamWeb.Controllers
         #region Create
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpGet]
-        public ActionResult Create(string Firstname, string positionName, string firstName, string middleName, string lastName, string referencecode)
+        public ActionResult Create( string PositionName, string firstName, string middleName, string lastName, string referencecode)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace AndersonExamWeb.Controllers
                 };
 
 
-                var position = _iFPosition.Read(positionName);
+                var position = _iFPosition.Read(PositionName);
                 if (position.PositionId != 0)
                 {
                     examinee.PositionId = position.PositionId;
