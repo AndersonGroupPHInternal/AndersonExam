@@ -1,24 +1,29 @@
-﻿ 
+﻿  
 @{
     ViewBag.Title = "Index";
 }
-
+<h2>List Of Exams</h2>
 <div ng-controller="ExamController as model" ng-init="model.Initialise()">
     <div class="row">
-        <div class="col-sm-4">
-
-
-            <a class="btn btn-default" ng-click="model.Rfilter()">Search</a>
-            <input type="text" placeholder="Search for exam.." ng-model="model.ExamFilter.Names">
+        <div class="col-sm-1">
+            <a href="../Examinee/Create" class="btn btn-default">Create</a>
         </div>
+        <div class="col-sm-5 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamFilter.Names">
+                <span class="input-group-btn">
+                    <button id="searchLogo" class="btn btn-default" ng-click="model.Rfilter()"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>   
     </div>
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th>Exam Id</th>
-                        <th>Time Limit (Minutes)</th>
+                        <th width="6%">Exam ID</th>
+                        <th width="13%">Time Limit (Minutes)</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Instructions</th>
