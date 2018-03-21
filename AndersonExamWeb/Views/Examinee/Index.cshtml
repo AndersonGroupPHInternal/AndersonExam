@@ -9,9 +9,9 @@
     </div>
     <div class="col-sm-5 pull-right">
         <div class="input-group" >
-            <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name">
+            <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name" ng-change="model.Rfilter()">
             <span class="input-group-btn">
-                <button id="searchLogo" class="btn btn-default" ng-click="model.Rfilter()"><i class="fa fa-search"></i></button>
+                <button id="searchLogo" class="btn btn-default" ><i class="fa fa-search"></i></button>
             </span>
         </div>
     </div>
