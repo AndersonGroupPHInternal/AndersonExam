@@ -78,7 +78,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr  ng-repeat="choice in question.Choices" ng-init="model.ReadChoiceImage(choice); model.ShowChoiceImage(choice)">
+                                            <tr ng-repeat="choice in question.Choices" ng-init="model.ReadChoiceImage(choice); model.ShowChoiceImage(choice)">
                                                 <td>
                                                     <span ng-bind="choice.Correct" ng-show="choice.UpdateMode != true"></span>
                                                     <input type="checkbox" ng-model="choice.NewCorrect" ng-show="choice.UpdateMode == true" />

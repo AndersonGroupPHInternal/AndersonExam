@@ -1,13 +1,14 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-bottom: 80px;
+    padding-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top:60px;
 }
 
 .clickableRow {
-    cursor: pointer
+    cursor: pointer;
+    
 }
 
 .row {
@@ -20,7 +21,6 @@
 
 textarea{
         resize:none;
-        overflow: hidden;
     }
 
 .footer {   

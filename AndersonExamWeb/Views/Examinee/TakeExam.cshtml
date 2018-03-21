@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>
                                         <span ng-bind="{{$index + 1 }}"></span>
-                                        <input type="hidden" name="QuestionId" value="question.QuestionId"/>
+                                        <input type="hidden" name="QuestionId" value="question.QuestionId" />
                                     </td>
                                     <td><span ng-bind="question.Description"></span></td>
                                     <td>
@@ -60,7 +60,7 @@
                                             <tbody>
                                                 <tr ng-repeat="choice in question.Choices" ng-init="model.ReadForChoiceImage(choice)">
                                                     <td class="col-sm-1">
-                                                        <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}" id="radioAnswers">     
+                                                        <input type="radio" name="Answers[{{$parent.$index}}].ChoiceId" value="{{choice.ChoiceId}}" id="radioAnswers">
                                                     </td>
                                                     <td><span ng-bind="choice.Description"></span></td>
                                                     <td>
@@ -81,6 +81,7 @@
         </div>
         <label>(Check your answers before submitting)</label><br />
         <input type="submit" class="btn btn-success" value="submit" />
+    </div>
 </form>
 @*<script>
 var newTime = new Date();
