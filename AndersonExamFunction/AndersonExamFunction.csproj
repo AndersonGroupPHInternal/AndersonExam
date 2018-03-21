@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\AndersonExam\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,15 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Base">
-      <HintPath>..\..\DLL\Release\Base\Base.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseData">
-      <HintPath>..\..\DLL\Release\Base\BaseData.dll</HintPath>
-    </Reference>
-    <Reference Include="BaseEntity">
-      <HintPath>..\..\DLL\Release\Base\BaseEntity.dll</HintPath>
-    </Reference>
+    <Reference Include="Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="BaseData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="BaseEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />

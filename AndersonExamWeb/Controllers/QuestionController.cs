@@ -27,7 +27,7 @@ namespace AndersonExamWeb.Controllers
         {
             return Json(_iFQuestion.Read(id));
         }
-        //check if this is a redundant function (This is not)
+        //check if this is a redundant function
         [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult ReadQuestionForTakeExam(int id)

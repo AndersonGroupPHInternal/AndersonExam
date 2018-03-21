@@ -4,7 +4,7 @@
 <div class="form-group" ng-controller="ExamineeController as model" ng-init="model.ReadForPosition()">
     <input type="hidden" name="PositionId" value="{{model.Position.PositionId}}" />
     <label for="Position">Position</label>
-    <ui-select ng-model="model.Position">
+    <ui-select ng-model="model.Position" ng-required="true">
         <ui-select-match placeholder="Select Position...">
             <span ng-bind="$select.selected.PositionName"></span>
         </ui-select-match>
@@ -13,21 +13,22 @@
         </ui-select-choices>
     </ui-select>
 </div>
+
 <div class="form-group">
-    <label for="ReferenceCode">ReferenceCode</label>
-    <input type="text" class="form-control" id="ReferenceCode" name="ReferenceCode" placeholder="ReferenceCode" value="@Model.ReferenceCode">
+    <label for="ReferenceCode">Reference Code</label>
+    <input type="text" class="form-control" id="ReferenceCode" name="ReferenceCode" placeholder="Reference Code" value="@Model.ReferenceCode" required>
 </div>
 <div class="form-group">
-    <label for="Lastname">Lastname</label>
-    <input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Lastname" value="@Model.Lastname">
+    <label for="Lastname">Last Name</label>
+    <input type="text" class="form-control" id="Lastname" name="Lastname" placeholder="Last Name" value="@Model.Lastname" required>
 </div>
 <div class="form-group">
-    <label for="Firstname">Firstname</label>
-    <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="Firstname" value="@Model.Firstname">
+    <label for="Firstname">First Name</label>
+    <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="First Name" value="@Model.Firstname" required>
 </div>
 <div class="form-group">
-    <label for="Middlename">Middlename</label>
-    <input type="text" class="form-control" id="Middlename" name="Middlename" placeholder="Middlename" value="@Model.Middlename">
+    <label for="Middlename">Middle Name</label>
+    <input type="text" class="form-control" id="Middlename" name="Middlename" placeholder="Middle Name" value="@Model.Middlename" required>
 </div>
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />

@@ -32,7 +32,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\DLL\Debug\AndersonExam\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,6 +50,10 @@
     <Reference Include="AccountsWebAuthentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\Release\Accounts\AccountsWebAuthentication.dll</HintPath>
+    </Reference>
+    <Reference Include="AndersonExamModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AndersonExamModel\bin\Debug\AndersonExamModel.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
@@ -529,6 +533,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Angular\app.module.js" />
+    <Content Include="Scripts\Angular\Controller\ExamTimer.js" />
     <Content Include="Scripts\Angular\Controller\Position.Controller.js" />
     <Content Include="Scripts\Angular\Controller\Examinee.Controller.js" />
     <Content Include="Scripts\Angular\Controller\ExamSet.Controller.js" />
@@ -740,10 +745,6 @@
     <ProjectReference Include="..\AndersonExamFunction\AndersonExamFunction.csproj">
       <Project>{0c711414-9b09-4d97-a7f9-d642cae191c7}</Project>
       <Name>AndersonExamFunction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AndersonExamModel\AndersonExamModel.csproj">
-      <Project>{3f2dbf19-6be0-46dd-84d3-f3529ff8fa8b}</Project>
-      <Name>AndersonExamModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

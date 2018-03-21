@@ -5,7 +5,7 @@ namespace AndersonExamModel
 {
     public class TakenExam : Base.Base
     {
-        public decimal Percentage
+        public int Percentage
         {
             get
             {

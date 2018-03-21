@@ -1,23 +1,28 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-
+<h2>List Of Examinee</h2>
 <div ng-controller="ExamineeController as model" ng-init="model.Initialise()">
-    <div class="row">
-        <div class="col-sm-4">
-            <a class=   "btn btn-default" ng-click="model.Rfilter()">Search</a>
-
-            <input type="text" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name">
-
-        </div>  
+<div class="row">
+    <div class="col-sm-1">
+        <a href="../Examinee/Create" class="btn btn-default">Create</a>
     </div>
+    <div class="col-sm-5 pull-right">
+        <div class="input-group" >
+            <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name">
+            <span class="input-group-btn">
+                <button id="searchLogo" class="btn btn-default" ng-click="model.Rfilter()"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+</div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12">      
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
-                    <tr class="thead-inverse">
-                        <th>Examinee Id</th>
-                        <th>Position Id</th>
+                    <tr class="thead-inverse" id="mytr">
+                        <th>Examinee ID</th>
+                        <th>Position ID</th>
                         <th>Reference Code</th>
                         <th>Last Name</th>  
                         <th>First Name</th>
