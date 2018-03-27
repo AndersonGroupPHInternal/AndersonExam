@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Index";
 }
 <h2>List Of Examinee</h2>
@@ -9,8 +9,7 @@
     </div>
     <div class="col-sm-5 pull-right">
         <div>
-            <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamineeFilter.Name" ng-change="model.Rfilter()">
-
+            <input type="text" class="form-control " placeholder="Search for names.." ng-model="model.ExamineeFilter.Name" ng-change="model.Rfilter()">
         </div>
     </div>
 </div>
@@ -37,7 +36,7 @@
                         <td><span ng-bind="examinee.Lastname"></span></td>
                         <td><span ng-bind="examinee.Firstname"></span></td>
                         <td><span ng-bind="examinee.Middlename"></span></td>
-                        <td ng-init="model.Percentage(examinee)"><span ng-bind="examinee.Percentage"></span>%</td>
+                        <td ng-init="model.Percentage(examinee)"><span ng-bind="examinee.Percentage" ></span>%</td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

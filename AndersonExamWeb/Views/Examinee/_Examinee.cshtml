@@ -4,7 +4,7 @@
 <div class="form-group" ng-controller="ExamineeController as model" ng-init="model.ReadForPosition()">
     <input type="hidden" name="PositionId" value="{{model.Position.PositionId}}" />
     <label for="Position">Position</label>
-    <ui-select ng-model="model.Position" ng-required="true">
+    <ui-select ng-model="model.Position">
         <ui-select-match placeholder="Select Position...">
             <span ng-bind="$select.selected.PositionName"></span>
         </ui-select-match>

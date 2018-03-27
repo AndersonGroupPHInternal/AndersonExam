@@ -1,4 +1,3 @@
-﻿  
 @{
     ViewBag.Title = "Index";
 }
@@ -6,11 +5,13 @@
 <div ng-controller="ExamController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-1">
-            <a href="../Examinee/Create" class="btn btn-default">Create</a>
+            <a href="../Exam/Create" class="btn btn-default">Create</a>
         </div>
         <div class="col-sm-5 pull-right">
-            <div class="">
-                    <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamFilter.Names" ng-change="model.Rfilter()">
+
+            <div>
+                <input type="text" class="form-control" placeholder="Search for names.." ng-model="model.ExamFilter.Names" ng-change="model.Rfilter()">
+
             </div>
         </div>   
     </div>
@@ -19,8 +20,8 @@
             <table class="table table-hover table-sm table-bordered ">
                 <thead>
                     <tr class="thead-inverse">
-                        <th width="6%">Exam ID</th>
-                        <th width="13%">Time Limit (Minutes)</th>
+                        <th class="wide">Exam ID</th>
+                        <th class="wide">Time Limit (Minutes)</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Instructions</th>
