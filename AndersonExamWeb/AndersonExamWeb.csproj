@@ -530,6 +530,7 @@
     <Content Include="bower_components\tether\src\js\shift.js" />
     <Content Include="bower_components\tether\src\js\tether.js" />
     <Content Include="bower_components\tether\src\js\utils.js" />
+    <Content Include="Content\Images\logo2.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Angular\app.module.js" />
@@ -731,7 +732,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bower_components\pnotify\libtests\requirejs\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ExamPosition\" />
