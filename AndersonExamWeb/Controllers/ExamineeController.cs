@@ -93,6 +93,7 @@ namespace AndersonExamWeb.Controllers
         #endregion          
 
         #region Read
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -112,12 +113,15 @@ namespace AndersonExamWeb.Controllers
             return Json(_iFExaminee.Percentage(id));
         }
 
+        //ToDo: Why this is read when taking an exam?
+        [CustomAuthorize(AllowedRoles = new string[0])]
         [HttpPost]
         public JsonResult Read()
         {
             return Json(_iFExaminee.Read());
         }
 
+        
         [HttpGet]
         public ActionResult TakenExam(int id)
         {

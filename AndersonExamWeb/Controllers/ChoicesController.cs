@@ -25,13 +25,14 @@ namespace AndersonExamWeb.Controllers
         #endregion
 
         #region Read
-        [CustomAuthorize(AllowedRoles = new string[0])]
+     
         [HttpPost]
         public JsonResult Read(int id)
         {
             return Json(_iFChoice.Read(id));
         }
 
+        [CustomAuthorize(AllowedRoles = new string[0])]
         public JsonResult ReadForTakeExam(int id)
         {
             return Json(_iFChoice.ReadForTakeExam(id));
